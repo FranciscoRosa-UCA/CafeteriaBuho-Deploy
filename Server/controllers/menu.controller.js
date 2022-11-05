@@ -18,7 +18,7 @@ menuController.getByCategory = (req, res) => {
     return res.status(200).json({dia, categoria});
 }
 
-menuController.save = (req, res) => {
+menuController.create = (req, res) => {
     let {nombre,
         precio,
         dias,
