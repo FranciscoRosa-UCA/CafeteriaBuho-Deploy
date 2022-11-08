@@ -3,7 +3,7 @@ import Icon from "../../../Icon/Icon";
 
 const Banner = () => {
     return(
-        <div className="flex flex-col gap-5 p-5">
+        <div className="flex flex-col gap-5">
             <figure className="flex justify-center max-h-80">
                 <img className="w-full"//max-w-xl 
                 src="https://tipsparatuviaje.com/wp-content/uploads/2020/02/pupusas-comida.jpg" alt="Banner" />

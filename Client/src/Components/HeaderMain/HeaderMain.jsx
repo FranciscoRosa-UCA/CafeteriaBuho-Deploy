@@ -5,12 +5,10 @@ import Icon from "../Icon/Icon";
 const MainHeader = ()=> {
 
     return(
-        <header className="w-full rounded-xl flex justify-between px-10 py-5">
+        <header className="w-full rounded-xl flex justify-between px-5 py-5">
 
             <div className="flex items-center gap-x-10">
-                <figure>
-                    <Icon _type="home" ></Icon>
-                </figure>                
+                <Icon _type="home" ></Icon>              
                 <nav>
                     <ul className="flex items-center gap-x-10 text-xl">
                         <li>
