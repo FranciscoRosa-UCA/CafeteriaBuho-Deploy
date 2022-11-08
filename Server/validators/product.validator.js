@@ -1,5 +1,5 @@
 const debug = require('debug')('app:menu-validator');
-const { body } = require('express-validator');
+const { body, check } = require('express-validator');
 
 const {isArrayFormat} = require('../utils/utils');
 
@@ -40,12 +40,7 @@ validations.create = [
     }).withMessage("El elemento debe tener un arreglo válido de elementos anidados"),
 
     body("descripcion")
-    .notEmpty().withMessage("El elemento debe tener una descripción"),
-
-    body("imagen")
-    .notEmpty().withMessage("El elemento debe tener una imagen")
-    .bail()
-    .isURL().withMessage("La imagen debe ser una URL válida")
+    .notEmpty().withMessage("El elemento debe tener una descripción")
 ];
 
 module.exports = validations;
