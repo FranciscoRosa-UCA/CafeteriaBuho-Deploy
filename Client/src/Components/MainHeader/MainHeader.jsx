@@ -30,7 +30,7 @@ const MainHeader = ()=> {
                     <Icon _type="wallet" ></Icon>
                 </figure>
                 <figure>
-                    <Icon _type="shoppingCart" ></Icon>
+                    <Icon _type="shopping" ></Icon>
                 </figure>
                 <figure>
                     <Icon _type="account" ></Icon>
