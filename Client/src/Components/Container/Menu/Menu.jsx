@@ -1,18 +1,18 @@
 import React from "react";
 import Banner from "./Banner/Banner";
-import Outstanding from "./Outstanding/Outstanding";
+import CardsContainer from "../../CardsContainer/CardsContainer";
 
-const Container = () => {
+const Menu = () => {
     return(
         <>
         <Banner>
 
         </Banner>
-        <Outstanding>
-            
-        </Outstanding>
+        <CardsContainer>
+
+        </CardsContainer>
         </>
     );
 };
 
-export default Container;
+export default Menu;
