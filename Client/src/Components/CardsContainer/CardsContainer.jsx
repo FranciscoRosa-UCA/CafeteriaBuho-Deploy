@@ -1,11 +1,11 @@
 import React from "react";
 import Card from "./Card/Card";
 
-const CardsContainer = ({_category="Destacado"}) => {
+const CardsContainer = ({_category="Destacado", _flex="row", _wrap="nowrap"}) => {
     return(
         <div className="flex flex-col gap-5">
             <h4 className="text-xl"> {_category} </h4>
-            <div className="flex flex-nowrap gap-10 justify-between">
+            <div className={`flex flex-${_flex} flex-${_wrap} gap-10 justify-between`}>
                 <Card _name={"Plato 1"} _price={"23.30"} _image={"https://tipsparatuviaje.com/wp-content/uploads/2020/02/tamales-comida.jpg"}></Card>
                 <Card _name={"Plato 2"} _price={"25.73"} _image={"https://picsum.photos/id/233/200/300"}></Card>
                 <Card _name={"Plato 3"} _price={"50.83"} _image={"https://picsum.photos/id/218/250/310"}></Card>
