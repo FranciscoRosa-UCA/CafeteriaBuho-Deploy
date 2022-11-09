@@ -6,10 +6,8 @@ const Menu = () => {
     return(
         <>
         <Banner>
-
         </Banner>
-        <CardsContainer>
-
+        <CardsContainer _wrap="wrap">
         </CardsContainer>
         </>
     );

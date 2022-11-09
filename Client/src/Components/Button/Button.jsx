@@ -1,25 +1,31 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { purple } from '@mui/material/colors';
+import { red } from '@mui/material/colors';
 
 import ThisButton from '@mui/material/Button';
 
-const Button = () => {
-    const theme = createTheme({
+const Button = (props) => {
+      const theme = createTheme({
         palette: {
-          primary: {
-            // Purple and green play nicely together.
-            main: purple[500],
+          yellow: {
+            main: '#FFB703',
           },
-          secondary: {
-            // This is green.A700 as hex.
-            main: '#11cb5f',
+          red: {
+            main: red[500],
           },
         },
-      });
+    });
 
     return(
-        <ThisButton>
-            Menú del día
+      <ThemeProvider theme={theme}>
+        <ThisButton variant="contained" color="yellow" size="large"
+          onClick={() => {
+            alert('clicked');
+          }}
+          >
+            {props.children}
         </ThisButton>
+      </ThemeProvider>
     );
 }
+
+export default Button;
