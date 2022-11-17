@@ -48,11 +48,7 @@ userController.signup = async(req, res) => {
     let {
         username,
         email,
-        password,
-        phone,
-        photo,
-        rol,
-        institution,
+        password
     } = req.body;
 
     // hacer hash al password
