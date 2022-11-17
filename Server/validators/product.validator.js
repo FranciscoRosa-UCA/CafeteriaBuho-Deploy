@@ -1,5 +1,5 @@
 const debug = require('debug')('app:menu-validator');
-const { body, check } = require('express-validator');
+const { body } = require('express-validator');
 
 const {isArrayFormat} = require('../utils/utils');
 
