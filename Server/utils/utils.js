@@ -16,8 +16,7 @@ module.exports = {
         return res;
     },
     message: (ok, message) => {
-        return
-        {
+        return {
             ok,
             message
         }
