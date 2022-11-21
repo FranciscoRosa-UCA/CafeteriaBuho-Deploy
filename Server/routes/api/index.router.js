@@ -8,6 +8,7 @@ const productRouter = require('./product.router');
 const comprarRouter = require('./comprar.router');
 
 router.use('/product', productRouter);
+router.use('/user', productRouter);
 router.use('/category', categoryRouter);
 router.use('/comprar', comprarRouter);
 
