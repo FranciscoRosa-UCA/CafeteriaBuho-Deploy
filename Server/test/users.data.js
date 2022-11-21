@@ -6,6 +6,11 @@ module.exports = [
         password: "$2b$10$IHXBDgHb9G3Yubl1ZEmD8uOGZCtmmHjSgCLBzzuk8MYw1RO0i7udq",
         phone: "50376079410",
         photo: "user.png",
+        wallet: {
+            qr: "mi llave",
+            saldo: 0.00
+        },
+
         rol: "ROL_USER",
         institucion: "UCA"
     },
