@@ -52,7 +52,6 @@ userController.signup = async(req, res) => {
         password
     } = req.body;
     let qr = getWalletID(email);
-    console.log(qr);
     let wallet = {
         qr,
         ucoins: 0.00,
