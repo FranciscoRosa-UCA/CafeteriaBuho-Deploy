@@ -14,5 +14,15 @@ module.exports = {
             res = false;
         }
         return res;
+    },
+    message: (ok, message) => {
+        return
+        {
+            ok,
+            message
+        }
+    },
+    getWalletID: (email) => {
+        return email.split('@')[0];
     }
 }
