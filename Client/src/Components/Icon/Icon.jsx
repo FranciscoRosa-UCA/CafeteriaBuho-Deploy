@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { yellow, red } from '@mui/material/colors';
+import { red } from '@mui/material/colors';
 
 import HomeIcon from '@mui/icons-material/Home';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -12,7 +12,7 @@ import UploadFileIcon from '@mui/icons-material/UploadFile';
 import SearchIcon from '@mui/icons-material/Search';
 import AddIcon from '@mui/icons-material/Add';
 
-const Icon = ({_type="home", _size="large", _color="yellow"}) => {
+const Icon = ({_type="home", _size="large", _color="yellow", handler}) => {
     
     const theme = createTheme({
         palette: {
@@ -22,10 +22,15 @@ const Icon = ({_type="home", _size="large", _color="yellow"}) => {
           red: {
             main: red[500],
           },
-        },
+          white: {
+            main: '#FFFFFF',
+          },
+        }
     });
+
     const handleClick = () => {
-        alert('clicked')
+        alert('clicked');
+        //handler();
     };
 
 
@@ -53,7 +58,7 @@ const Icon = ({_type="home", _size="large", _color="yellow"}) => {
                 return <ListIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></ListIcon>
 
             case "upload":
-                return <UploadFileIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></UploadFileIcon>
+                return <UploadFileIcon color={_color} label="Clickable" onClick={handleClick} sx={{ fontSize: 100 }}></UploadFileIcon>
             
             case "search":
                 return <SearchIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></SearchIcon>
