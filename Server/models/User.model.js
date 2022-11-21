@@ -1,6 +1,18 @@
 const Mongoose = require('mongoose');
 const Schema = Mongoose.Schema;
 
+const WalletSchema = new Schema({
+    qr: {
+        type: String,
+        required: true,
+    },
+    ucoins: {
+        type: Number,
+        required: true,
+        default: 0.00
+    }
+});
+
 const UserModel = new Schema({
     username: {
         type: String,
@@ -16,6 +28,9 @@ const UserModel = new Schema({
         type: String,
         required: true,
         default: null,
+    },
+    wallet: {
+        type: WalletSchema
     },
     telefono: {
         type: String,
@@ -34,17 +49,6 @@ const UserModel = new Schema({
         type: String,
         default: null
     },
-    wallet: {
-        qr: {
-            type: String,
-            required: true,
-        },
-        ucoins: {
-            type: Number,
-            required: true,
-            default: 0.00
-        }
-    }
 });
 
 module.exports = Mongoose.model("User", UserModel);
