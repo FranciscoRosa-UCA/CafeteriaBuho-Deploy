@@ -837,11 +837,6 @@
   dependencies:
     "is-arrayish" "^0.2.1"
 
-"esbuild-linux-64@0.15.13":
-  "integrity" "sha512-rXmnArVNio6yANSqDQlIO4WiP+Cv7+9EuAHNnag7rByAqFVuRusLbGi2697A5dFPNXoO//IiogVwi3AdcfPC6A=="
-  "resolved" "https://registry.npmjs.org/esbuild-linux-64/-/esbuild-linux-64-0.15.13.tgz"
-  "version" "0.15.13"
-
 "esbuild@^0.15.9":
   "integrity" "sha512-Cu3SC84oyzzhrK/YyN4iEVy2jZu5t2fz66HEOShHURcjSkOSAVL8C/gfUT+lDJxkVHpg8GZ10DD0rMHRPqMFaQ=="
   "resolved" "https://registry.npmjs.org/esbuild/-/esbuild-0.15.13.tgz"
