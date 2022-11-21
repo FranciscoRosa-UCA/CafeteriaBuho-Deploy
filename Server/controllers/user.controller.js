@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const userData = require('../test/users.data');
-
+const { getWalletID, message } = require('../utils/utils');
+const User = require('../models/User.model');
 const userController = {}; 
 
 userController.getById = async (req, res) => {
@@ -48,18 +49,30 @@ userController.signup = async(req, res) => {
     let {
         username,
         email,
-        password,
-        phone,
-        photo,
-        rol,
-        institution,
+        password
     } = req.body;
-
+    let qr = getWalletID(email);
+    let wallet = {
+        qr,
+        ucoins: 0.00,
+    }
     // hacer hash al password
     const saltRounds = 10;
     const hash = await bcrypt.hash(password, saltRounds);
+    
+    let user = new User({
+        username,
+        email,
+        password,
+        wallet
+    });
 
-    res.status(200).json({ok:true});
+    let _user = await user.save();
+
+    if (_user)
+        return res.status(200).json(message(true, "Se ha registrado correctamente"));
+
+    return res.status(400).json(false, "Ha ocurrido un error interno");
 }
 
 module.exports =  userController;

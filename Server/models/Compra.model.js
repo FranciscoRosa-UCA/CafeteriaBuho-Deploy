@@ -10,6 +10,10 @@ const CompraSchema = new Schema ({
     productos: {
         type: [String],
         required: true,
+    },
+    total: {
+        type: Number,
+        required: true,
     }
 });
 
