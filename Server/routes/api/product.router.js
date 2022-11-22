@@ -18,7 +18,13 @@ router.post('/',
     upload.single('imagen'),
     productValidators.create,
     runValidations,
-    productSanitizer,
+    productSanitizer.create,
     productController.create
 );
+
+router.patch('/',
+    productValidators.create,
+    runValidations,
+    productSanitizer.update,
+    productController.update);
 module.exports = router;

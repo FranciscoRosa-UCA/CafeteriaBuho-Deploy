@@ -32,7 +32,6 @@ validations.create = [
     .bail()
     .isMongoId().withMessage("El tipo del elemento debe ser un tipo válido"),
 
-
     body("anidados")
     .optional()
     .custom(value => {
