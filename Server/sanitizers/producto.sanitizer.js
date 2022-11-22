@@ -30,7 +30,7 @@ sanitizer.create = async(req, res, next) => {
         removePhoto(req.file.path, res);
         return res.status(400).json({error: "El producto debe tener una imagen"});
     }
-    let imagen = await uploadPhoto(req.file.path, req.body.name);
+    let imagen = await uploadPhoto(req.file.path, req.body.nombre);
     removePhoto(req.file.path, res);
 
     if (imagen === "") {
@@ -56,7 +56,7 @@ sanitizer.create = async(req, res, next) => {
     });
     if (anidados)
         anidados = JSON.parse(anidados);
-    res.product = 
+    res.producto = 
     {
         nombre,
         precio,
@@ -71,14 +71,14 @@ sanitizer.create = async(req, res, next) => {
 };
 
 sanitizer.update = async (req, res, next) => {
-    let imagen = null;
     if (req.file) {
-        imagen = await uploadPhoto(req.file.path, req.body.name);
+        let imagen = await uploadPhoto(req.file.path, req.body.nombre);
         removePhoto(req.file.path, res);
         if (imagen === "") {
             debug('Error al subir imagen');
             return res.status(500).send({error:"Error interno"});
-        }
+        } else
+            res.producto = {...res.producto, imagen};
     }
     
     let {
@@ -99,16 +99,16 @@ sanitizer.update = async (req, res, next) => {
     });
     if (anidados)
         anidados = JSON.parse(anidados);
-    res.product = 
+    res.producto = 
     {
+        ...res.producto,
         nombre,
         precio,
         dias,
         categorias,
         tipo,
         anidados,
-        descripcion,
-        imagen
+        descripcion
     };
 
     next();

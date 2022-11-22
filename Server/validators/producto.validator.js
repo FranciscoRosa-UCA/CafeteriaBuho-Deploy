@@ -42,4 +42,9 @@ validations.create = [
     .notEmpty().withMessage("El elemento debe tener una descripción")
 ];
 
+validations.delete = [
+    body('id')
+    .notEmpty().withMessage('Debe proveer el id del producto que desea eliminar').bail()
+    .isMongoId().withMessage('Debe proveer un id válidos')
+];
 module.exports = validations;
