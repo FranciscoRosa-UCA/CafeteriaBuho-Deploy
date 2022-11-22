@@ -1,5 +1,6 @@
 const menuData = require('../testdata/menu.data');
 const Product = require('../models/Product.model');
+const { message } = require('../utils/utils');
 const productController = {};
 
 productController.getAll = (req, res) => {
@@ -29,6 +30,16 @@ productController.create = async (req, res) => {
     } catch (e) {
         return res.status(500).json({error: "Error interno"});
     }
+}
+
+productController.update = async (req, res) => {
+    let product = Product.findByIdAndUpdate(req.body.id, res.product);
+
+    if (!product)
+        return res.status(400).json(message(false, 'El producto que intenta actualizar no existe'));
+    return res.status(200).json(product);
+
+    
 }
 
 module.exports = productController;
