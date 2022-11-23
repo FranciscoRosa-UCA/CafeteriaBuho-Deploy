@@ -1,6 +1,6 @@
 import {React, useState} from "react";
 import "./Register.css"
-
+import axios from 'axios';
 import Button from "../../Button/Button";
 
 
@@ -13,7 +13,16 @@ const Register = () => {
     }
 
     const handleSubmit = () => {
-        console.log(form);
+        axios.post('http://localhost:5000/api/user/signup/',
+        form)
+        .then(data => data.data)
+        .then(data => {
+            if (data.ok)
+                console.log(data.message)
+        })
+        .catch(e => {
+            console.log(e.response.data.error);
+        });
     }
 
 
@@ -28,11 +37,11 @@ const Register = () => {
             <form action="" className="flex flex-col gap-10 text-xl w-5/12">
 
                 <div className="flex flex-row flex-wrap gap-6 w-full justify-between">
-                    <input type="text" placeholder="Nombre de usuario" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('nombre', e.target.value)} />
-                    <input type="email" placeholder="Correo electronico" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('correo', e.target.value)}/>
+                    <input type="text" placeholder="Nombre de usuario" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('username', e.target.value)} />
+                    <input type="email" placeholder="Correo electronico" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('email', e.target.value)}/>
                     <input type="text" placeholder="Telefono" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('telefono', e.target.value)}/>
-                    <input type="password" placeholder="Contraseña" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('contraseña', e.target.value)}/>
-                    <input type="password" placeholder="Confirmar contraseña" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('Validacion_contraseña', e.target.value)}/>
+                    <input type="password" placeholder="Contraseña" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('password', e.target.value)}/>
+                    <input type="password" placeholder="Confirmar contraseña" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('passwordValidation', e.target.value)}/>
                 </div>
 
                 <div className="flex flex-col w-9/12 gap-4 items-center">
