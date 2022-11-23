@@ -25,6 +25,9 @@ const Icon = ({_type="home", _size="large", _color="yellow", handler}) => {
           white: {
             main: '#FFFFFF',
           },
+          black: {
+            main: '#000000',
+          },
         }
     });
 
