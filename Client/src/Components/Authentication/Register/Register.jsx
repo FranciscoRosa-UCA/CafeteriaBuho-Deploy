@@ -19,6 +19,7 @@ const Register = () => {
         .then(data => {
             if (data.ok)
                 console.log(data.message)
+            window.location.pathname = '/';
         })
         .catch(e => {
             console.log(e.response.data.error);

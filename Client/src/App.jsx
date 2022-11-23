@@ -17,18 +17,18 @@ function App() {
 
   return (
     <div className="App">
-      {/* <MainHeader>
-      </MainHeader> */}
+      <MainHeader>
+      </MainHeader>
       {/* <AccountHeader>
 
       </AccountHeader> */}
-      {/* <Container>
+      <Container>
 
-      </Container> */}
+      </Container>
 
       {/* <Login></Login> */}
       
-      <Register></Register>
+      {/* <Register></Register> */}
 
     </div>
   )
