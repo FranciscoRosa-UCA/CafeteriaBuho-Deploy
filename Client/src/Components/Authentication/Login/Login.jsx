@@ -1,28 +1,47 @@
-import React from "react";
+import {React, useState} from "react";
 import "./Login.css"
 
 import Button from "../../Button/Button";
 
 
 const Login = () => {
-    return(
-        <div className="flex justify-center">
-            <form action="" className="w-4/5 flex flex-col gap-10 text-xl">
 
-                <div className="flex flex-row flex-wrap gap-6 w-full justify-between">
-                    <input type="text" placeholder="Usuario" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" />
+    const [form, setForm] = useState({});
+
+    const handleForm = (name, value) => {
+        setForm({...form, [name]: value});
+    }
+
+    const handleSubmit = () => {
+        console.log(form);
+    }
+
+
+    return(
+        <div className="flex flex-col  items-center w-full h-screen">
+            <form action="" className="flex flex-col gap-14 text-xl w-6/12 items-center justify-center h-full">
+
+                <div className="flex flex-col gap-6 w-full justify-center items-center">
+                    <h2>Hola ucamigo</h2>
+                    <input type="text" placeholder="Usuario" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('nombre', e.target.value)}/>
+                    <input type="password" placeholder="Contraseña" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('contraseña', e.target.value)}/>
                 </div>
 
-                <div className="flex flex-row flex-wrap min-w-96 gap-4 justify-between">
-                    <div className="w-5/12 flex flex-col">
-                        <Button>Añadir</Button>
+                <div className="flex flex-col w-9/12 gap-4 items-center">
+                    <div className="w-11/12 flex flex-col">
+                        <Button handler={handleSubmit}>Iniciar sesíon</Button>
                     </div>
-                    <div className="w-5/12 flex flex-col">
-                        <Button>Inicia sesion con google</Button>
+                    <div className="w-11/12 flex flex-col">
+                        <Button _color={"dark"}>Iniciar sesíon con google</Button>
                     </div>
                 </div>
 
             </form>
+
+            <div className="flex gap-8 items-center">
+                <p>¿No tienes una cuenta?, registrate ahora:</p>
+                <Button _color={"dark"}>Registrarse</Button>
+            </div>
 
         </div>
     );
