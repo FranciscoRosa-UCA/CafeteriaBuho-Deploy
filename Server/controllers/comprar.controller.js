@@ -1,8 +1,7 @@
 const debug = require('debug')('app:compra-controller');
 const comprarController = {};
-const { response } = require('express');
 const Compra = require('../models/Compra.model');
-const Product = require('../models/Product.model');
+const Product = require('../models/Producto.model');
 const User = require('../models/User.model');
 const { message } = require('../utils/utils');
 
