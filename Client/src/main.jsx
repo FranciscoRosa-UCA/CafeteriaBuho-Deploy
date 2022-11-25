@@ -8,13 +8,30 @@ import {
 } from "react-router-dom";
 import Login from './Components/Authentication/Login/Login';
 import Register from './Components/Authentication/Register/Register';
-import { Container, Menu } from '@mui/material';
 import MainHeader from './Components/HeaderMain/HeaderMain';
+import Container from './Components/ContainerMain/ContainerMain';
+import MenuDay from './Components/ContainerMain/MenuDay/MenuDay';
+import Menu from './Components/ContainerMain/Menu/Menu';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Container/>
+    element: <><MainHeader/><Container/></>,
+    children: [
+      {
+        path: '/',
+        element: <Menu />
+      },
+      {
+        path: '/menu',
+        element: <MenuDay />
+      },
+      {
+        path: '/cuenta',
+        // AQUI HAY QUE PONER EL COMPONENTE DE CUENTA
+        element: <MenuDay />
+      },
+    ]
   },
   {
     path: "/login",
