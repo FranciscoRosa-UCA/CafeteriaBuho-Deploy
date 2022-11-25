@@ -1,19 +1,18 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const userData = require('../test/users.data');
 const { getWalletID, message } = require('../utils/utils');
 const User = require('../models/User.model');
 const userController = {}; 
 
+const getToken = (user) => {
+    const token = jwt.sign({
+        data: {email: user.email, username: user.username, role: user.rol}
+    }, process.env.TOKEN, { expiresIn: '24h' })
+    return token;
+}
+
 userController.getById = async (req, res) => {
     let { id } = req.params;
-    //
-    // const salRouds = 10;
-    // const salt = await bcrypt.genSalt(salRouds);
-    // const hash = await bcrypt.hash('password', salt);
-    // const hash2 = await bcrypt.hash('root', salt);
-    // const hash3 = await bcrypt.hash('hola123', salt);
-
     return res.status(200).json({ });
 }
 
@@ -27,15 +26,12 @@ userController.login = async(req, res) => {
         if (match) {
             const token = jwt.sign({
                     data: {email: user.email, username: user.username}
-                }, process.env.TOKEN, { expiresIn: '1h' })
-            res.status(200).json(
-                token
-            );
+                }, process.env.TOKEN, { expiresIn: '24h' })
+            return res.status(200).json({response: message(true, 'Ha iniciado sesión correctamente'), token});
         }
         else
-            res.status(400).json({error: "Credenciales erróneas"});
+            return res.status(400).json({error: "Credenciales erróneas"});
     }
-    return;
 }
 
 userController.signup = async(req, res) => {
@@ -68,9 +64,13 @@ userController.signup = async(req, res) => {
     });
 
     let _user = await user.save();
-
-    if (_user)
-        return res.status(200).json(message(true, "Se ha registrado correctamente"));
+    let token = getToken(_user);
+    if (_user) {
+        return res.status(200).json({
+            response: message(true, "Se ha registrado correctamente"),
+            token
+        });
+    }
 
     return res.status(400).json(false, "Ha ocurrido un error interno");
 }

@@ -8,11 +8,11 @@ const MainHeader = ()=> {
         <header className="w-full rounded-xl flex justify-between px-5 py-5">
 
             <div className="flex items-center gap-x-10">
-                <Icon _type="home" ></Icon>              
+                <a href='/'><Icon _type="home" ></Icon></a>          
                 <nav>
                     <ul className="flex items-center gap-x-10 text-xl">
                         <li>
-                            Menú del día
+                            <a href='/menu'>Menú del día</a>
                         </li>
                         <li>
                             Administrar menú
@@ -31,7 +31,7 @@ const MainHeader = ()=> {
                     <Icon _type="shopping" ></Icon>
                 </figure>
                 <figure>
-                    <Icon _type="account" ></Icon>
+                    <a href='/cuenta'><Icon _type="account" ></Icon></a>
                 </figure>
             </div>
 
