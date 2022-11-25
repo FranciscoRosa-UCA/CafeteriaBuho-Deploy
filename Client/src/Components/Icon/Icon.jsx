@@ -31,46 +31,47 @@ const Icon = ({_type="home", _size="large", _color="yellow", handler}) => {
         }
     });
 
-    const handleClick = () => {
-        alert('clicked');
-        //handler();
-    };
+    // const handleClick = () => {
+    //     alert('clicked');
+    //     //handler();
+    // };
 
 
     const ThisIcon = ()=> {
         switch(_type){
             case "home":
-                return <HomeIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></HomeIcon>
+                return <HomeIcon color={_color} fontSize={_size} label="Clickable"></HomeIcon>
 
             case "delete":
-                return <DeleteIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></DeleteIcon>
+                return <DeleteIcon color={_color} fontSize={_size} label="Clickable"></DeleteIcon>
 
             case "shopping":
-                return <ShoppingCartIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></ShoppingCartIcon>
+                return <ShoppingCartIcon color={_color} fontSize={_size} label="Clickable"></ShoppingCartIcon>
 
             case "addShopping":
-                return <AddShoppingCartIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></AddShoppingCartIcon>
+                return <AddShoppingCartIcon color={_color} fontSize={_size} label="Clickable"></AddShoppingCartIcon>
     
             case "account":
-                return <AccountCircleIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></AccountCircleIcon>
+                return <AccountCircleIcon color={_color} fontSize={_size} label="Clickable"></AccountCircleIcon>
 
             case "wallet":
-                return <AccountBalanceWalletIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></AccountBalanceWalletIcon>
+                return <AccountBalanceWalletIcon color={_color} fontSize={_size} label="Clickable"></AccountBalanceWalletIcon>
 
             case "list":
-                return <ListIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></ListIcon>
+                return <ListIcon color={_color} fontSize={_size} label="Clickable"></ListIcon>
 
             case "upload":
-                return <UploadFileIcon color={_color} label="Clickable" onClick={handleClick} sx={{ fontSize: 100 }}></UploadFileIcon>
+                return <UploadFileIcon color={_color} label="Clickable" sx={{ fontSize: 100 }}></UploadFileIcon>
             
             case "search":
-                return <SearchIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></SearchIcon>
+                return <SearchIcon color={_color} fontSize={_size} label="Clickable"></SearchIcon>
 
             case "add":
-                return <AddIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></AddIcon>
+                return <AddIcon color={_color} fontSize={_size} label="Clickable"></AddIcon>
 
             default:
-                return <HomeIcon color={_color} fontSize={_size} label="Clickable" onClick={handleClick}></HomeIcon>
+                return <HomeIcon color={_color} fontSize={_size} label="Clickable"></HomeIcon>
+            // onClick={handleClick}
         }
     }
 

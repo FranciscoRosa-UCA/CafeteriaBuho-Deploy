@@ -5,7 +5,7 @@ import{
     Route,
     Link
 } from "react-router-dom";
-
+import { Outlet } from "react-router-dom";
 import Menu from "./Menu/Menu"
 import MenuDay from "./MenuDay/MenuDay";
 import Saucer from "./Saucer/Saucer";
@@ -15,7 +15,7 @@ import ContainerAccount from "../ContainerAccount/ContainerAccount";
 const Container = () => {
     return(
         <div className="p-5">
-            <Menu></Menu>
+            <Outlet />
 
             {/* <MenuDay></MenuDay> */}
 
