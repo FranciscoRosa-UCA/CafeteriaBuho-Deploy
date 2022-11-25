@@ -39,11 +39,11 @@ const router = createBrowserRouter([
             element: <Account />
           },
           {
-            path:'/cuenta/configuracion';
+            path:'/cuenta/configuracion',
             element: <Configuration />
           },
           {
-            path:'/cuenta/historial';
+            path:'/cuenta/historial',
             element: <History />
           }
         ]

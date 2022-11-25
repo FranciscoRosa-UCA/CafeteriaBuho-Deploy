@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const debug = require('debug')('app:user-controller');
 const jwt = require('jsonwebtoken');
 const { getWalletID, message } = require('../utils/utils');
 const User = require('../models/User.model');
@@ -7,7 +8,7 @@ const userController = {};
 const getToken = (user) => {
     const token = jwt.sign({
         data: {email: user.email, username: user.username, role: user.rol}
-    }, process.env.TOKEN, { expiresIn: '24h' })
+    }, process.env.TOKEN)
     return token;
 }
 
@@ -39,9 +40,7 @@ userController.login = async(req, res) => {
     if (user) {
         match = await bcrypt.compare(password, user.password);
         if (match) {
-            const token = jwt.sign({
-                    data: {email: user.email, username: user.username}
-                }, process.env.TOKEN, { expiresIn: '24h' })
+            const token = getToken(user);
             return res.status(200).json({response: message(true, 'Ha iniciado sesión correctamente'), token});
         }
         else

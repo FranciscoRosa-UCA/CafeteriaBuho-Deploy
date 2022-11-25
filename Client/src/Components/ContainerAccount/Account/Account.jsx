@@ -15,7 +15,10 @@ const Account = () => {
             .then(data => {
                 setForm(data.user);
             })
-            .catch(e=>console.log(e));
+            .catch(e=>{
+                console.log(e.response.data.message);
+                window.location.pathname='/login';
+            });
         } else 
             window.location.pathname ='/login';
     }, []);
@@ -46,7 +49,7 @@ const Account = () => {
                         <Icon _type="upload" _color="black" _sx="100"></Icon>
                 </div>
 
-                <p>Nombre de Usuario</p>
+                <p>{form.username}</p>
 
                 <div className="flex flex-col gap-6 w-6/12 items-center">
                     <input type="text" placeholder="Nombre de usuario" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('username', e.target.value)}
