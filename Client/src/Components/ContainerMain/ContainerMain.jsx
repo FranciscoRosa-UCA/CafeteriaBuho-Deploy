@@ -12,7 +12,7 @@ import Saucer from "./Saucer/Saucer";
 import SaucerAdd from "./SaucerAdd/SaucerAdd";
 import ContainerAccount from "../ContainerAccount/ContainerAccount";
 
-const Container = () => {
+const ContainerMain = () => {
     return(
         <div className="p-5">
             <Outlet />
@@ -29,4 +29,4 @@ const Container = () => {
     );
 };
 
-export default Container;
+export default ContainerMain;
