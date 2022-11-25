@@ -19,7 +19,7 @@ const Login = () => {
             console.log(data);
             if (data.statusText == 'OK') {
                 localStorage.setItem('token', JSON.stringify(data.data.token));
-                window.location.pathname = '/';
+                // window.location.pathname = '/';
             }
         })
         .catch(e => {
@@ -52,7 +52,7 @@ const Login = () => {
 
             <div className="flex gap-8 items-center">
                 <p>¿No tienes una cuenta?, registrate ahora:</p>
-                <Button _color={"dark"}>Registrarse</Button>
+                <a href='/signup'>Registrarse</a>
             </div>
 
         </div>
