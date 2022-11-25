@@ -16,10 +16,9 @@ const Login = () => {
     const handleSubmit = () => {
         axios.post(API_URL + '/user/login', form)
         .then (data => {
-            console.log(data);
             if (data.statusText == 'OK') {
-                localStorage.setItem('token', JSON.stringify(data.data.token));
-                // window.location.pathname = '/';
+                localStorage.setItem('token', data.data.token);
+                window.location.pathname = '/';
             }
         })
         .catch(e => {
