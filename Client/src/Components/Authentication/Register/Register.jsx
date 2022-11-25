@@ -17,9 +17,10 @@ const Register = () => {
         form)
         .then(data => data.data)
         .then(data => {
-            if (data.ok)
-                console.log(data.message)
-            window.location.pathname = '/';
+            if (data.response.ok) {
+                localStorage.setItem('token', data.token);
+                window.location.pathname = '/';
+            }
         })
         .catch(e => {
             console.log(e.response.data.error);

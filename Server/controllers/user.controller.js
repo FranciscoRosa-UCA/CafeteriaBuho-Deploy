@@ -11,14 +11,29 @@ const getToken = (user) => {
     return token;
 }
 
-userController.getById = async (req, res) => {
-    let { id } = req.params;
-    return res.status(200).json({ });
+userController.getByEmail = async (req, res) => {
+    let { token } = req.body;
+    try {
+        let payload = jwt.verify(token, process.env.TOKEN);
+        let email = payload.data.email;
+        let user = await User.findOne({email}).select(['-password', '-wallet']);
+        if (user)
+            res.status(200).json({user});
+        else
+            res.status(400).json(message(false, 'No se ha encontrado un usuario válido'));
+    } catch (e) {
+        debug(e);
+        if (e instanceof jwt.JsonWebTokenError) {
+			// if the error thrown is because the JWT is unauthorized, return a 401 error
+			return res.status(401).json(message(false, 'No es un usuario válido'));
+		}
+        res.status(500).json(message(false, 'Error interno'));
+    }
+    return;
 }
 
 userController.login = async(req, res) => {
     const { email, password } = req.body;
-    // buscar persona en la base y comprobar si coincide su contraseña
     const user = await User.findOne({email});
     let match = false;
     if (user) {
