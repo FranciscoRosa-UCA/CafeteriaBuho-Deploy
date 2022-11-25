@@ -11,6 +11,9 @@ const Button = ({children, handler, _color="yellow"}) => {
         dark: {
           main: 'rgba(31, 63, 132, 0.25)',
         },
+        red:{
+          main: '#E84545',
+        },
       },
     });
 
@@ -20,7 +23,7 @@ const Button = ({children, handler, _color="yellow"}) => {
       <ThemeProvider theme={theme}>
         <ThisButton variant="contained" color={_color} size="large"
           onClick={() => {
-              handler()
+              handler? handler() : 0;
           }}
           >
             {children}
