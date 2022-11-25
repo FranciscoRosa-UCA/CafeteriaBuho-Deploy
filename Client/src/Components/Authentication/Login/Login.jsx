@@ -15,9 +15,17 @@ const Login = () => {
 
     const handleSubmit = () => {
         axios.post(API_URL + '/user/login', form)
-        .then (data => console.log(data))
-        .catch(e => console.log(e));
-        console.log(form);
+        .then (data => {
+            console.log(data);
+            if (data.statusText == 'OK') {
+                localStorage.setItem('token', JSON.stringify(data.data.token));
+                window.location.pathname = '/';
+            }
+        })
+        .catch(e => {
+            if (e.response)
+                console.log(e.response.data.error);
+        });
     }
 
 
