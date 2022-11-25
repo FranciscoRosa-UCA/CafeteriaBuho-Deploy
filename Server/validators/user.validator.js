@@ -13,4 +13,17 @@ validations.create = [
     .notEmpty().withMessage('La contraseña no puede estar vacía'),
 ];
 
+validations.login = [
+    body('email').trim()
+    .notEmpty().withMessage('Debe ingresar un email').bail()
+    .isEmail().withMessage('Debe ingresar un email válido'),
+    body('password')
+    .notEmpty().withMessage('Debe ingresar una contraseña')
+]
+
+validations.getByEmail = [
+    body('token').trim()
+    .notEmpty().withMessage('No ha iniciado sesion').bail()
+]
+
 module.exports = validations;

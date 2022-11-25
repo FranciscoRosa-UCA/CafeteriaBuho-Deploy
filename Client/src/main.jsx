@@ -14,6 +14,8 @@ import MenuDay from './Components/ContainerMain/MenuDay/MenuDay';
 import Menu from './Components/ContainerMain/Menu/Menu';
 import History from './Components/ContainerAccount/History/History';
 import Configuration from './Components/ContainerAccount/Configuration/Configuration';
+import ContainerAccount from './Components/ContainerAccount/ContainerAccount';
+import Account from './Components/ContainerAccount/Account/Account';
 
 const router = createBrowserRouter([
   {
@@ -30,8 +32,21 @@ const router = createBrowserRouter([
       },
       {
         path: '/cuenta',
-        // AQUI HAY QUE PONER EL COMPONENTE DE CUENTA
-        element: <Configuration />
+        element: <ContainerAccount />,
+        children: [
+          {
+            path:'/cuenta',
+            element: <Account />
+          },
+          {
+            path:'/cuenta/configuracion';
+            element: <Configuration />
+          },
+          {
+            path:'/cuenta/historial';
+            element: <History />
+          }
+        ]
       },
     ]
   },
