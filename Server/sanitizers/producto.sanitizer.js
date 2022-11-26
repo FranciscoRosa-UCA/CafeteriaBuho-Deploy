@@ -1,28 +1,8 @@
-const cloudinary = require('cloudinary');
-const fs = require('fs');
-const debug = require('debug')('app:sanitizer');
+const debug = require('debug')('app:producto-sanitizer');
+
+const {uploadPhoto, removePhoto} = require('../utils/utils'); 
 
 const sanitizer = {};
-
-const uploadPhoto = async (url, name) => {
-    let uri = "";
-    try {
-        let res = await cloudinary.v2.uploader.upload(`${url}`, {public_id: name});
-        uri = res.url;
-    } catch (error) {
-        uri = "";
-    }
-    return uri;
-}
-
-const removePhoto = (path, res) => {
-    fs.rm(path, (err)=>{
-        if (err) {
-            debug(err);
-            return res.status(500).send({error:"Error interno"});
-        }
-    });
-}
 
 sanitizer.create = async(req, res, next) => {
     

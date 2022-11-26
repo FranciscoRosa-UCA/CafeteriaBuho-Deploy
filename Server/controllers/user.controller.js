@@ -12,10 +12,19 @@ const getToken = (user) => {
     return token;
 }
 
+const validateToken = (token) => {
+    let payload = null;
+    try {
+        payload = jwt.verify(token, process.env.TOKEN);
+    } catch(e) {
+    }
+    return payload;
+}
+
 userController.getByEmail = async (req, res) => {
     let { token } = req.body;
     try {
-        let payload = jwt.verify(token, process.env.TOKEN);
+        let payload = validateToken(token);
         let email = payload.data.email;
         let user = await User.findOne({email}).select(['-password', '-wallet']);
         if (user)
@@ -87,6 +96,28 @@ userController.signup = async(req, res) => {
     }
 
     return res.status(400).json(false, "Ha ocurrido un error interno");
+}
+
+userController.update = async (req, res) => {
+    let {token} = req.body;
+    let payload = validateToken(token);
+    try {
+        if (payload) {  
+            let email = payload.data.email;
+            let newUser = {
+                username: req.body.username || null,
+                foto: res.foto || null,
+                institucion: req.body.institucion || null
+            };
+            await User.findOneAndUpdate({email}, newUser);
+            res.status(200).json(message(true, 'Usuario actualizado exitosamente'));
+        } else {
+            res.status(400).json(message(false, 'Credenciales erróneas'));
+        }
+    } catch (e) {
+        res.status(500).json(message(false, 'Error interno'));
+    }
+    return;
 }
 
 module.exports =  userController;
