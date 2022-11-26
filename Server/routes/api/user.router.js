@@ -1,8 +1,12 @@
 const express = require('express');
+const multer = require('multer');
+
+const upload = multer({ dest: '../uploads/' });
 
 const userController = require('../../controllers/user.controller');
 const router = express.Router();
 const userValidations = require('../../validators/user.validator');
+const userSanitizer = require('../../sanitizers/user.sanitizer');
 const runValidations = require('../../validators/index.validator');
 
 router.post('/getUser',
@@ -17,5 +21,11 @@ router.post('/signup',
             userValidations.create,
             runValidations,
             userController.signup)
+router.patch('/update',
+            upload.single('currentFile'),
+            userValidations.update,
+            runValidations,
+            userSanitizer.update,
+            userController.update)
 
 module.exports = router;

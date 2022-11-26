@@ -1,12 +1,20 @@
-const menuData = require('../testdata/menu.data');
+const debug = require('debug')('app:producto-controller');
+const Categoria = require('../models/Categoria.model');
+
 const Producto = require('../models/Producto.model');
 const { message } = require('../utils/utils');
 const productoController = {};
 
-productoController.getAll = (req, res) => {
-    let { dia } = req.params;
-    let data = menuData.filter(el => el.dias.includes(dia));
-    return res.status(200).json(data);
+productoController.getByDay = async (req, res) => {
+    let { id } = req.params;
+    let data = await Producto.find({dias: id});
+    let categorias = {};
+    data.forEach(platillo => {
+        if (!categorias[platillo.categoria])
+            categorias[platillo.categoria] = [];
+        categorias[platillo.categoria].push(platillo);
+    })
+    return res.status(200).json(categorias);
 }
 
 productoController.getById = (req, res) => {
@@ -22,12 +30,13 @@ productoController.getByCategory = (req, res) => {
 
 productoController.create = async (req, res) => {
     // De sanitizer viene un objeto llamado res.product
-    let producto = new Producto(res.producto);
     try {
-        const newProducto = await producto.save();
-
-        return res.status(200).json(newProducto);
+        let _categoria = await Categoria.findById(res.producto.categoriaId);
+        let categoria = _categoria.nombre;
+        let producto = await Producto.create({...res.producto, categoria});
+        return res.status(200).json(producto);
     } catch (e) {
+        debug(e);
         return res.status(500).json({error: "Error interno"});
     }
 }

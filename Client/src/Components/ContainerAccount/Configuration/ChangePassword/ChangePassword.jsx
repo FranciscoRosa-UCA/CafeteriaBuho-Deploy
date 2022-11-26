@@ -22,7 +22,7 @@ const ChangePassword = () => {
         <div id="mod-pass" className="w-full h-full absolute inset-0 modal-b flex justify-center items-center">
             <div className="flex flex-col justify-center gap-5 items-center p-10 w-96 text-xl modal-c">
                 <p>Cambiar contraseña</p>
-                <hr />
+                <hr className="w-full"/>
 
                 <form action="" className="w-4/5 flex flex-col gap-10 text-xl">
 
