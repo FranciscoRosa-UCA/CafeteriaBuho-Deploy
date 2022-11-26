@@ -2,7 +2,7 @@ import React from "react";
 
 import Button from "../../Button/Button";
 import ChangePassword from "./ChangePassword/ChangePassword";
-
+import DeleteAccount from "./DeleteAccount/DeleteAccount";
 
 const Configuration = () => {
 
@@ -29,7 +29,10 @@ const Configuration = () => {
                     <p>Fecha de creacion de la cuenta</p>
                     <Button _color="red">Eliminar cuenta</Button>
                 </div>
-                <ChangePassword></ChangePassword>
+
+                {/* <ChangePassword></ChangePassword> */}
+                
+                {/* <DeleteAccount></DeleteAccount> */}
 
         </div>
     );
