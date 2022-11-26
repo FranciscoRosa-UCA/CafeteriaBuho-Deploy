@@ -8,6 +8,7 @@ import{
 
 import AccountHeader from "../HeaderAccount/HeaderAccount";
 import Account from "./Account/Account";
+import Support from "./Support/Support";
 
 const ContainerAccount = () => {
     return(
@@ -15,7 +16,7 @@ const ContainerAccount = () => {
             <AccountHeader/>
             <Account>                
             </Account>
-
+            <Support></Support>
         </div>
     );
 };
