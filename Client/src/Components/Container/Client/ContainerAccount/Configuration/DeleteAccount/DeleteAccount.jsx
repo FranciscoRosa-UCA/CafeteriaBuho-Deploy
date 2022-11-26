@@ -2,7 +2,7 @@ import React from "react";
 
 import './DeleteAccount.css';
 
-import Button from "../../../Button/Button";
+import Button from "../../../../../Button/Button";
 import DeleteAccountConfirmation from "./DeleteAccountConfirmation";
 
 const DeleteAccount = () => {
