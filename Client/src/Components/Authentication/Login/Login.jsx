@@ -1,6 +1,5 @@
 import {React, useState} from "react";
 import "./Login.css"
-import { API_URL } from "../../../config";
 import axios from 'axios';
 import Button from "../../Button/Button";
 
@@ -14,7 +13,7 @@ const Login = () => {
     }
 
     const handleSubmit = () => {
-        axios.post(API_URL + '/user/login', form)
+        axios.post('/user/login', form)
         .then (data => {
             if (data.statusText == 'OK') {
                 localStorage.setItem('token', data.data.token);
