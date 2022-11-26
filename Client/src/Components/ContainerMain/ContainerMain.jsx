@@ -6,10 +6,9 @@ import{
     Link
 } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import Menu from "./Menu/Menu"
-import MenuDay from "./MenuDay/MenuDay";
-import Saucer from "./Saucer/Saucer";
-import SaucerAdd from "./SaucerAdd/SaucerAdd";
+import MenuDay from "./Client/MenuDay/MenuDay";
+import Saucer from "./Client/Saucer/Saucer";
+import SaucerAdd from "./Administrator/SaucerAdd/SaucerAdd";
 import ContainerAccount from "../ContainerAccount/ContainerAccount";
 
 const ContainerMain = () => {
