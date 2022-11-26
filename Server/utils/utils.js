@@ -1,3 +1,5 @@
+const cloudinary = require('cloudinary');
+const fs = require('fs');
 module.exports = {
     isArrayFormat : (element) => {
         let res = true;
@@ -23,5 +25,25 @@ module.exports = {
     },
     getWalletID: (email) => {
         return email.split('@')[0];
+    },
+    uploadPhoto: async (url, name) => {
+        let uri = "";
+        try {
+            let res = await cloudinary.v2.uploader.upload(`${url}`, {public_id: name});
+            uri = res.url;
+        } catch (error) {
+            uri = "";
+        }
+        return uri;
+    },
+    removePhoto: (path, res) => {
+        let response = true;
+        fs.rm(path, (err)=>{
+            if (err) {
+                debug(err);
+                response = false;
+            }
+        });
+        return response;
     }
 }
