@@ -16,6 +16,11 @@ import History from './Components/ContainerAccount/History/History';
 import Configuration from './Components/ContainerAccount/Configuration/Configuration';
 import ContainerAccount from './Components/ContainerAccount/ContainerAccount';
 import Account from './Components/ContainerAccount/Account/Account';
+import Carrito from './Components/Carrito/Carrito';
+import Payment from './Components/Payment/Payment';
+import PaymentFailed from './Components/PaymentFailed/PaymentFailed';
+import QrPayment from './Components/QrPayment/QrPayment';
+import Recarga from './Components/Recarga/Recarga';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +53,26 @@ const router = createBrowserRouter([
           }
         ]
       },
+      {
+        path: '/carrito',
+        element: <Carrito/>
+      },
+      {
+        path: '/payment',
+        element: <Payment/>
+      },
+      {
+        path: '/paymentf',
+        element: <PaymentFailed/>
+      },
+      {
+        path: '/qrpayment',
+        element: <QrPayment/>
+      },
+      {
+        path: '/recarga',
+        element: <Recarga/>
+      }
     ]
   },
   {
