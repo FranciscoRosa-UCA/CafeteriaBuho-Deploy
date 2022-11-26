@@ -1,9 +1,9 @@
 import React from "react";
 
-import Icon from "../../Icon/Icon";
+import Icon from "../../../Icon/Icon";
 
 import MenuHeader from "./MenuHeader/MenuHeader";
-import CardsContainer from "../../CardsContainer/CardsContainer";
+import CardsContainer from "../../../CardsContainer/CardsContainer";
 
 const MenuDay = () => {
     return(
