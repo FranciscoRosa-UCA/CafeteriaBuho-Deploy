@@ -9,12 +9,13 @@ import{
 import AccountHeader from "../HeaderAccount/HeaderAccount";
 import { Outlet } from "react-router-dom";
 import Support from "./Support/Support";
+
 const ContainerAccount = () => {
     return(
         <div className="">
             <AccountHeader/>
             <Outlet />
-            <Support></Support>
+            {/* <Support></Support> */}
        </div>
     );
 };
