@@ -2,8 +2,7 @@ import React from "react";
 
 import './Support.css';
 
-import Button from "../../Button/Button";
-
+import Button from "../../../../Button/Button";
 const Support = () => {
 
     const handleSubmit = () => {

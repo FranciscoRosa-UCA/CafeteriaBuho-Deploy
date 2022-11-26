@@ -2,7 +2,7 @@ import {React, useState} from "react";
 
 import './ChangePassword.css';
 
-import Button from "../../../Button/Button";
+import Button from "../../../../../Button/Button";
 
 const ChangePassword = () => {
 

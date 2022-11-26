@@ -8,7 +8,6 @@ import{
 } from "react-router-dom";
 
 import MainHeader from './Components/Header/Header'
-import AccountHeader from './Components/HeaderAccount/HeaderAccount'
 import Container from './Components/Container/Container'
 import Login from './Components/Authentication/Login/Login'
 import Register from './Components/Authentication/Register/Register';
@@ -17,14 +16,14 @@ function App() {
 
   return (
     <div className="App">
-      <MainHeader>
-      </MainHeader>
+      {/* <MainHeader>
+      </MainHeader> */}
       {/* <AccountHeader>
 
       </AccountHeader> */}
-      <Container>
+      {/* <Container>
       
-      </Container>
+      </Container> */}
 
       {/* <Login></Login> */}
       

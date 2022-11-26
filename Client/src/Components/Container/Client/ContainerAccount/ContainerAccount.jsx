@@ -6,7 +6,7 @@ import{
     Link
 } from "react-router-dom";
 
-import AccountHeader from "../HeaderAccount/HeaderAccount";
+import AccountHeader from "./HeaderAccount/HeaderAccount";
 import { Outlet } from "react-router-dom";
 import Support from "./Support/Support";
 
