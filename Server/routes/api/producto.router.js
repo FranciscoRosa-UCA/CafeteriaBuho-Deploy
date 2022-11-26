@@ -26,7 +26,6 @@ router.patch('/',
     upload.single('imagen'),
     productoValidators.create,
     runValidations,
-    productoSanitizer.update,
     productoController.update);
 
 router.delete('/',

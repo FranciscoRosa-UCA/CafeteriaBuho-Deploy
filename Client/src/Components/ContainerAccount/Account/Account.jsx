@@ -7,6 +7,7 @@ import Icon from "../../Icon/Icon";
 
 const Account = () => {
     const [form, setForm] = useState({});
+    const [currentFile, setFile] = useState({});
 
     useEffect(()=>{
         if (localStorage.getItem('token')) {
@@ -22,17 +23,33 @@ const Account = () => {
         } else 
             window.location.pathname ='/login';
     }, []);
+
     const handleForm = (name, value) => {
         setForm({...form, [name]: value});
     }
-
+    const uploadHandler = (file) => {
+        setFile(file);
+        setForm({...form, foto: window.webkitURL.createObjectURL(file)})
+    }
     const handleSubmit = () => {
-        console.log(form);
+        axios.patch(API_URL+'/user/update',
+        {
+            ...form,
+            currentFile,
+            token: localStorage.getItem('token')
+        },
+        {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        })
+        .then(data => console.log(data))
+        .catch(e=>console.log(e));
     }
 
     return(
         <div className="flex justify-center p-10 w-full">
-            <form action="" className="w-full flex flex-col gap-10 text-xl items-center">
+            <form className="w-full flex flex-col gap-10 text-xl items-center">
 
                 <div className="pic p-2 w-60 h-56 p-2 flex justify-center items-center"
                     onClick={
@@ -41,12 +58,12 @@ const Account = () => {
                         }
                     }
                     >
-                        <input id="img" type="file"  className="hidden" onChange={(e)=>handleForm('foto', e.target.value)}/>
+                        <input id="img" type="file"  className="hidden" onChange={(e)=>uploadHandler(e.target.files[0])}/>
                         <figure>
-                            <img src="https://res.cloudinary.com/dvbuu8u2x/image/upload/v1666536043/olympic_flag.jpg" />
-
+                        {form.foto && <img src={form.foto} />
+                        // :<Icon _type="upload" _color="black" _sx="100"></Icon>
+                        }
                         </figure>
-                        <Icon _type="upload" _color="black" _sx="100"></Icon>
                 </div>
 
                 <p>{form.username}</p>
