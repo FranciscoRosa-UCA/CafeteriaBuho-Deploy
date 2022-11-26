@@ -1,5 +1,4 @@
-import Icon from "../../../Icon/Icon";
-import CardsContainer from "../../../CardsContainer/CardsContainer";
+import CardsContainer from "../../../../CardsContainer/CardsContainer";
 import {
     useParams
 } from "react-router-dom";

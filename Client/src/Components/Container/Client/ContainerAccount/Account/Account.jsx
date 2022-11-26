@@ -1,9 +1,9 @@
 import { React, useState, useEffect }from "react";
 import axios from 'axios';
 import "./Account.css"
-import Button from "../../Button/Button";
-import Icon from "../../Icon/Icon";
-import { useConfigContext } from "../../../contexts/ConfigContext";
+import Button from "../../../../Button/Button";
+import Icon from "../../../../Icon/Icon";
+import { useConfigContext } from "../../../../../contexts/ConfigContext";
 const Account = () => {
     const {loading} = useConfigContext();
     const [form, setForm] = useState({});
