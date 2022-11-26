@@ -7,17 +7,15 @@ import{
 } from "react-router-dom";
 
 import AccountHeader from "../HeaderAccount/HeaderAccount";
-import Account from "./Account/Account";
+import { Outlet } from "react-router-dom";
 import Support from "./Support/Support";
-
 const ContainerAccount = () => {
     return(
         <div className="">
             <AccountHeader/>
-            <Account>                
-            </Account>
+            <Outlet />
             <Support></Support>
-        </div>
+       </div>
     );
 };
 
