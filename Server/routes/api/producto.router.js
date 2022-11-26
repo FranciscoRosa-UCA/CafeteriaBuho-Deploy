@@ -8,11 +8,14 @@ const productoValidators = require('../../validators/producto.validator');
 const runValidations = require('../../validators/index.validator');
 const productoSanitizer = require('../../sanitizers/producto.sanitizer');
 
-router.get('/:dia([A-z]+)', productoController.getAll);
+router.get('/getByDay/:id',
+            productoValidators.getByDay,
+            runValidations,
+            productoController.getByDay);
 
 router.get('/:id', productoController.getById);
 
-router.get('/:dia/:categoria', productoController.getByCategory);
+// router.get('/:dia/:categoria', productoController.getByCategory);
 
 router.post('/',
     upload.single('imagen'),

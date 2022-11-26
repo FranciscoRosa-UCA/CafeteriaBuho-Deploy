@@ -7,7 +7,6 @@ const sanitizer = {};
 sanitizer.create = async(req, res, next) => {
     
     if (!req.file) {
-        removePhoto(req.file.path, res);
         return res.status(400).json({error: "El producto debe tener una imagen"});
     }
     let imagen = await uploadPhoto(req.file.path, req.body.nombre);
@@ -22,7 +21,7 @@ sanitizer.create = async(req, res, next) => {
         nombre,
         precio,
         dias,
-        categorias,
+        categoriaId,
         tipo,
         anidados,
         descripcion
@@ -30,10 +29,11 @@ sanitizer.create = async(req, res, next) => {
 
     dias = JSON.parse(dias);
 
-    categorias = JSON.parse(categorias);
-    categorias = categorias.map(el => {
-        return parseInt(el);
-    });
+    // categorias = JSON.parse(categorias);
+    // categorias = categorias.map(el => {
+    //     return parseInt(el);
+    // });
+
     if (anidados)
         anidados = JSON.parse(anidados);
     res.producto = 
@@ -41,7 +41,7 @@ sanitizer.create = async(req, res, next) => {
         nombre,
         precio,
         dias,
-        categorias,
+        categoriaId,
         tipo,
         anidados,
         descripcion,

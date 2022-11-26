@@ -6,7 +6,7 @@ const Card = ({_id, _image, _name, _price}) => {
         <div className="flex flex-col gap-0 text-xl">
             <figure className="flex justify-center w-80 h-80">
                 <img
-                src={_image} alt="Image" />
+                src={_image} alt="Image" className="w-full" />
             </figure>
             <h5>{_name || "Platillo"}</h5>
             <div className="flex justify-between items-center">

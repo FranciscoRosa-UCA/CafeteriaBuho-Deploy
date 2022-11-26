@@ -1,9 +1,14 @@
 const debug = require('debug')('app:menu-validator');
-const { body } = require('express-validator');
+const { body, param } = require('express-validator');
 
 const {isArrayFormat} = require('../utils/utils');
 
 const validations = {};
+
+validations.getByDay = [
+    param('id')
+    .isMongoId().withMessage('Debe brindar un dia válido') 
+];
 
 validations.create = [
     body("nombre")
@@ -19,13 +24,9 @@ validations.create = [
         return isArrayFormat(value);
     }).withMessage("Los días deben ser un arreglo válido"),
 
-    body("categorias")
-    // .if ()
-    .notEmpty().withMessage("El elemento debe pertenecer a una categoría")
-    .bail()
-    .custom(value => {
-        return isArrayFormat(value);
-    }).withMessage("Las categorías deben ser un arreglo válido"),
+    body("categoriaId")
+    .notEmpty().withMessage("El elemento debe pertenecer a una categoría").bail()
+    .isMongoId().withMessage('Debe ingresar un id válido'),
 
     body("tipo")
     .notEmpty().withMessage("El elemento debe ser de un tipo")

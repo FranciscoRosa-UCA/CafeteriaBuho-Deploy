@@ -1,34 +1,49 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import App from './App';
+import axios from 'axios';
 import './index.css';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
+import {ConfigProvider} from './contexts/ConfigContext';
+
 import Login from './Components/Authentication/Login/Login';
 import Register from './Components/Authentication/Register/Register';
-import MainHeader from './Components/HeaderMain/HeaderMain';
-import Container from './Components/ContainerMain/ContainerMain';
-import MenuDay from './Components/ContainerMain/MenuDay/MenuDay';
-import Menu from './Components/ContainerMain/Menu/Menu';
+import MainHeader from './Components/Header/Header';
+import Container from './Components/Container/Container';
+import MenuContainer from './Components/Container/MenuContainer/MenuContainer';
+import Home from './Components/Container/Home/Home';
 import History from './Components/ContainerAccount/History/History';
 import Configuration from './Components/ContainerAccount/Configuration/Configuration';
 import ContainerAccount from './Components/ContainerAccount/ContainerAccount';
 import Account from './Components/ContainerAccount/Account/Account';
+import Menu from './Components/Container/MenuContainer/Menu/Menu';
+
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <><MainHeader/><Container/></>,
+    element: <>
+          <MainHeader/><Container/>
+        </>,
     children: [
       {
         path: '/',
-        element: <Menu />
+        element: <Home />
       },
       {
         path: '/menu',
-        element: <MenuDay />
+        element: <MenuContainer />,
+        children: [
+          {
+            path:'/menu/:id',
+            element: <Menu />
+          },
+        ]
       },
       {
         path: '/cuenta',
@@ -62,6 +77,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+      <ConfigProvider>
+        <RouterProvider router={router} >
+        </RouterProvider>
+      </ConfigProvider>
   </React.StrictMode>
 )

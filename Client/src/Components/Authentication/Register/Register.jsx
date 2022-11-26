@@ -13,7 +13,7 @@ const Register = () => {
     }
 
     const handleSubmit = () => {
-        axios.post('http://localhost:5000/api/user/signup/',
+        axios.post('/user/signup',
         form)
         .then(data => data.data)
         .then(data => {

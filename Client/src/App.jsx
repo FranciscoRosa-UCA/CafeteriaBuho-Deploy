@@ -7,9 +7,9 @@ import{
   Link
 } from "react-router-dom";
 
-import MainHeader from './Components/HeaderMain/HeaderMain'
+import MainHeader from './Components/Header/Header'
 import AccountHeader from './Components/HeaderAccount/HeaderAccount'
-import Container from './Components/ContainerMain/ContainerMain'
+import Container from './Components/Container/Container'
 import Login from './Components/Authentication/Login/Login'
 import Register from './Components/Authentication/Register/Register';
 
@@ -23,7 +23,7 @@ function App() {
 
       </AccountHeader> */}
       <Container>
-
+      
       </Container>
 
       {/* <Login></Login> */}

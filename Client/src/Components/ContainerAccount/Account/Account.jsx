@@ -1,29 +1,30 @@
 import { React, useState, useEffect }from "react";
 import axios from 'axios';
 import "./Account.css"
-import { API_URL } from "../../../config";
 import Button from "../../Button/Button";
 import Icon from "../../Icon/Icon";
-
+import { useConfigContext } from "../../../contexts/ConfigContext";
 const Account = () => {
+    const {loading} = useConfigContext();
     const [form, setForm] = useState({});
     const [currentFile, setFile] = useState({});
 
     useEffect(()=>{
+        getUser();
+    }, []);
+    const getUser = async () => {
         if (localStorage.getItem('token')) {
-            axios.post(API_URL + '/user/getUser', {token: localStorage.getItem('token')})
-            .then(data => data.data)
-            .then(data => {
+            try {
+                let {data} = await axios.post('/user/getUser', {token: localStorage.getItem('token')});
                 setForm(data.user);
-            })
-            .catch(e=>{
+            }
+            catch(e) {
                 console.log(e.response.data.message);
                 window.location.pathname='/login';
-            });
-        } else 
+            };
+        } else
             window.location.pathname ='/login';
-    }, []);
-
+    }
     const handleForm = (name, value) => {
         setForm({...form, [name]: value});
     }
@@ -32,7 +33,7 @@ const Account = () => {
         setForm({...form, foto: window.webkitURL.createObjectURL(file)})
     }
     const handleSubmit = () => {
-        axios.patch(API_URL+'/user/update',
+        axios.patch('/user/update',
         {
             ...form,
             currentFile,
@@ -50,7 +51,6 @@ const Account = () => {
     return(
         <div className="flex justify-center p-10 w-full">
             <form className="w-full flex flex-col gap-10 text-xl items-center">
-
                 <div className="pic p-2 w-60 h-56 p-2 flex justify-center items-center"
                     onClick={
                         ()=>{
@@ -60,8 +60,10 @@ const Account = () => {
                     >
                         <input id="img" type="file"  className="hidden" onChange={(e)=>uploadHandler(e.target.files[0])}/>
                         <figure>
-                        {form.foto && <img src={form.foto} />
-                        // :<Icon _type="upload" _color="black" _sx="100"></Icon>
+                        {
+                            form.foto
+                            ? <img src={form.foto} />
+                            : <Icon _type="upload" _color="black" _sx="100"></Icon>
                         }
                         </figure>
                 </div>

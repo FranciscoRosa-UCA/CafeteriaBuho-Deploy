@@ -1,6 +1,5 @@
 const Mongoose = require('mongoose');
 const Schema = Mongoose.Schema;
-
 const ProductoSchema = new Schema({
     nombre: {
         type: String,
@@ -15,9 +14,9 @@ const ProductoSchema = new Schema({
         type: [String],
         required: true
     },
-    categorias: {
-        type: [Number],
-        required: true
+    categoria: {
+        type: String,
+        default: "",
     },
     tipo: {
         type: String,
@@ -33,6 +32,10 @@ const ProductoSchema = new Schema({
     },
     imagen: {
         type: String
+    },
+    destacado: {
+        type: Boolean,
+        default: false,
     }
 }, { timestamps: true });
 
