@@ -14,19 +14,19 @@ import Login from './Components/Authentication/Login/Login';
 import Register from './Components/Authentication/Register/Register';
 import MainHeader from './Components/Header/Header';
 import Container from './Components/Container/Container';
-import MenuContainer from './Components/Container/MenuContainer/MenuContainer';
-import Home from './Components/Container/Home/Home';
-import History from './Components/ContainerAccount/History/History';
-import Configuration from './Components/ContainerAccount/Configuration/Configuration';
-import ContainerAccount from './Components/ContainerAccount/ContainerAccount';
-import Account from './Components/ContainerAccount/Account/Account';
+import MenuContainer from './Components/Container/Client/MenuContainer/MenuContainer';
+import Home from './Components/Container/Client/Home/Home';
+import History from './Components/Container/Client/ContainerAccount/History/History';
+import Configuration from './Components/Container/Client/ContainerAccount/Configuration/Configuration'
+import ContainerAccount from './Components/Container/Client/ContainerAccount/ContainerAccount';
+import Account from './Components/Container/Client/ContainerAccount/Account/Account';
+import Menu from './Components/Container/Client/MenuContainer/Menu/Menu';
+import SaucerAdd from './Components/Container/Administrator/SaucerAdd/SaucerAdd';
 import Carrito from './Components/Carrito/Carrito';
 import Payment from './Components/Payment/Payment';
 import PaymentFailed from './Components/PaymentFailed/PaymentFailed';
 import QrPayment from './Components/QrPayment/QrPayment';
 import Recarga from './Components/Recarga/Recarga';
-import Menu from './Components/Container/MenuContainer/Menu/Menu';
-
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const router = createBrowserRouter([
@@ -87,7 +87,11 @@ const router = createBrowserRouter([
       {
         path: '/recarga',
         element: <Recarga/>
-      }
+      },
+      {
+        path: '/admin/platillo',
+        element: <SaucerAdd />
+      },
     ]
   },
   {

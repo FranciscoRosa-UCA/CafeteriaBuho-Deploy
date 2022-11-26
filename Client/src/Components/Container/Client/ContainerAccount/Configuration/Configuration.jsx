@@ -1,6 +1,6 @@
 import React from "react";
 
-import Button from "../../Button/Button";
+import Button from "../../../../Button/Button";
 import ChangePassword from "./ChangePassword/ChangePassword";
 import DeleteAccount from "./DeleteAccount/DeleteAccount";
 
