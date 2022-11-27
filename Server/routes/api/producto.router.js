@@ -9,9 +9,14 @@ const runValidations = require('../../validators/index.validator');
 const productoSanitizer = require('../../sanitizers/producto.sanitizer');
 
 router.get('/getByDay/:id',
-            productoValidators.getByDay,
+            productoValidators.getBySomeId,
             runValidations,
             productoController.getByDay);
+
+router.get('/getByTipo/:id',
+            productoValidators.getBySomeId,
+            runValidations,
+            productoController.getByTipo);
 
 router.get('/:id', productoController.getById);
 

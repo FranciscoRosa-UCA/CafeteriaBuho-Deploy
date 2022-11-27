@@ -32,8 +32,8 @@ const Icon = ({_type="home", _size="large", _color="yellow", handler}) => {
     });
 
     // const handleClick = () => {
-    //     alert('clicked');
-    //     //handler();
+    //     // alert('clicked');
+    //     // handler();
     // };
 
 
@@ -46,7 +46,7 @@ const Icon = ({_type="home", _size="large", _color="yellow", handler}) => {
                 return <DeleteIcon color={_color} fontSize={_size} label="Clickable"></DeleteIcon>
 
             case "shopping":
-                return <ShoppingCartIcon color={_color} fontSize={_size} label="Clickable"></ShoppingCartIcon>
+                return <ShoppingCartIcon onClick={handler} color={_color} fontSize={_size} label="Clickable"></ShoppingCartIcon>
 
             case "addShopping":
                 return <AddShoppingCartIcon color={_color} fontSize={_size} label="Clickable"></AddShoppingCartIcon>
@@ -55,7 +55,7 @@ const Icon = ({_type="home", _size="large", _color="yellow", handler}) => {
                 return <AccountCircleIcon color={_color} fontSize={_size} label="Clickable"></AccountCircleIcon>
 
             case "wallet":
-                return <AccountBalanceWalletIcon color={_color} fontSize={_size} label="Clickable"></AccountBalanceWalletIcon>
+                return <AccountBalanceWalletIcon onClick={handler} color={_color} fontSize={_size} label="Clickable"></AccountBalanceWalletIcon>
 
             case "list":
                 return <ListIcon color={_color} fontSize={_size} label="Clickable"></ListIcon>
