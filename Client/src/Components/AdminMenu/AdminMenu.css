@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@600&family=Poppins:wght@600&display=swap');
+.inp{
+    background-color: rgba(31, 63, 132, 0.25);
+    border-radius: 20px;
+    padding: 15px;
+    font-family: 'Gothic A1', sans-serif;
+
+}
+
 .general-container{
     width: 100%;
     display: flex;
@@ -15,6 +24,7 @@
 
 .menubusqueda{
     width: 200px;
+    border-radius: 10px;
 }
 
 .barra{
@@ -32,6 +42,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .items{
@@ -73,4 +84,5 @@
     justify-content: space-around;
     width: 100%;
 }
+
 
