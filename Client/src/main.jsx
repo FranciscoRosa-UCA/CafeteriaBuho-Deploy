@@ -26,6 +26,7 @@ import PaymentFailed from './Components/PaymentFailed/PaymentFailed';
 import QrPayment from './Components/QrPayment/QrPayment';
 import Recarga from './Components/Recarga/Recarga';
 import Menu from './Components/Container/MenuContainer/Menu/Menu';
+import AdminMenu from './Components/AdminMenu/AdminMenu';
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
       {
         path: '/recarga',
         element: <Recarga/>
+      },
+      {
+        path: '/adminmenu',
+        element: <AdminMenu/>
       }
     ]
   },
