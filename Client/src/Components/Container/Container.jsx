@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const ContainerMain = () => {
     return(
-        <div className="p-5">
+        <div className="h-max p-5">
             <Outlet />
         </div>
     );
