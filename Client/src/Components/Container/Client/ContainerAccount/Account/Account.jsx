@@ -29,8 +29,10 @@ const Account = () => {
         setForm({...form, [name]: value});
     }
     const uploadHandler = (file) => {
-        setFile(file);
-        setForm({...form, foto: window.webkitURL.createObjectURL(file)})
+        if (file) {
+            setFile(file);
+            setForm({...form, foto: window.webkitURL.createObjectURL(file)})
+        }
     }
     const handleSubmit = () => {
         axios.patch('/user/update',

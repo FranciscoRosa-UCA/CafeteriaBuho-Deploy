@@ -11,8 +11,11 @@ categoriaController.getAll = async (req, res) => {
 categoriaController.create = async (req, res) => {
     let categoria = new Categoria(req.body);
     try {
-        await categoria.save();
-        return res.status(200).json(message(true, 'Categoría agregada exitosamente'));
+        let newCategoria = await categoria.save();
+        return res.status(200).json({
+            categoria: newCategoria, 
+            response: message(true, 'Categoría agregada exitosamente')
+        });
     } catch(e) {
         return res.status(500).json(message(false, 'Error interno'));
     }
