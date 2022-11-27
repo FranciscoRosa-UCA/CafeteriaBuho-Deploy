@@ -4,7 +4,7 @@ const validations = require('../../validators/categoria.validator');
 const runValidations = require('../../validators/index.validator')
 const categoriaController = require('../../controllers/categoria.controller');
 
-router.get('/', categoriaController.getAll);
+router.get('/getAll', categoriaController.getAll);
 router.post('/',
             validations.create,
             runValidations,
