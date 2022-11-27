@@ -49,6 +49,10 @@ const UserModel = new Schema({
         type: String,
         default: null
     },
+    tokens: {
+        type:[String],
+        default:[]
+    }
 }, {timestamps:true});
 
 module.exports = Mongoose.model("User", UserModel);

@@ -1,5 +1,6 @@
 const cloudinary = require('cloudinary');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
 module.exports = {
     isArrayFormat : (element) => {
         let res = true;
@@ -45,5 +46,20 @@ module.exports = {
             }
         });
         return response;
+    },
+    getToken: (user) => {
+        const token = jwt.sign({
+            data: {id:user._id ,email: user.email, username: user.username, role: user.rol}
+        }, process.env.TOKEN)
+        return token;
+    },
+    
+    validateToken: (token) => {
+        let payload = null;
+        try {
+            payload = jwt.verify(token, process.env.TOKEN);
+        } catch(e) {
+        }
+        return payload;
     }
 }

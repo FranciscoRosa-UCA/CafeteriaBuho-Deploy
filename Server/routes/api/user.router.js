@@ -7,8 +7,12 @@ const userController = require('../../controllers/user.controller');
 const router = express.Router();
 const userValidations = require('../../validators/user.validator');
 const userSanitizer = require('../../sanitizers/user.sanitizer');
+const authMiddleware = require('../../middlewares/auth.middleware');
 const runValidations = require('../../validators/index.validator');
 
+router.get('/',
+            authMiddleware.authentication,
+            userController.getById);
 router.post('/getUser',
             userValidations.getByEmail,
             runValidations,

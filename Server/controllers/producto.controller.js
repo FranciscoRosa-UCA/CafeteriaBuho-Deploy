@@ -2,18 +2,37 @@ const debug = require('debug')('app:producto-controller');
 const Categoria = require('../models/Categoria.model');
 
 const Producto = require('../models/Producto.model');
+const TipoModel = require('../models/Tipo.model');
 const { message } = require('../utils/utils');
 const productoController = {};
+
+productoController.getAll = async (req, res) => {
+    try {
+        let productos = await Producto.find({}, {nombre:1, _id:1});
+        return res.status(200).json(productos);
+    } catch(e) {
+        return res.status(500).json(message(false, 'Error interno'));
+    }
+}
 
 productoController.getByDay = async (req, res) => {
     let { id } = req.params;
     let data = await Producto.find({dias: id});
-    let categorias = {};
+    let _categorias = {};
     data.forEach(platillo => {
-        if (!categorias[platillo.categoria])
-            categorias[platillo.categoria] = [];
-        categorias[platillo.categoria].push(platillo);
+        if (!_categorias[platillo.categoria])
+            _categorias[platillo.categoria] = [];
+        _categorias[platillo.categoria].push(platillo);
     })
+    let categorias = [];
+
+    for (let _categoria in _categorias) {
+        categorias.push({
+            nombre: _categoria,
+            productos: _categorias[_categoria]
+        });
+    }
+
     return res.status(200).json(categorias);
 }
 
@@ -30,8 +49,11 @@ productoController.getByCategory = (req, res) => {
 
 productoController.getByTipo = async(req, res) => {
     let { id } = req.params;
+    let tipo = null;
     let productos = await Producto.find({tipo:id}).select(['-__v', '-updatedAt', '-createdAt']);
-    return res.status(200).json({productos});
+    tipo = await TipoModel.findById(id);
+    console.log(tipo);
+    return res.status(200).json({productos, nombreTipo: tipo.nombre});
 }
 productoController.create = async (req, res) => {
     // De sanitizer viene un objeto llamado res.product
@@ -57,6 +79,18 @@ productoController.update = async (req, res) => {
     }
     return res.status(200).json(message(true, 'Producto actualizado exitosamente'));
     
+}
+
+productoController.setDia = async (req, res) => {
+    try {
+        let {productos, dia} = req.body;
+        productos.forEach(async (producto) => {
+            await Producto.findByIdAndUpdate(producto, {dias: dia});
+        });
+        return res.status(200).json(message(true, 'productos actualizados correctamente'));
+    } catch(e) {
+        return res.status(500).json(message(false, 'Error interno'));
+    }
 }
 
 productoController.delete = async (req, res) => {

@@ -1,24 +1,13 @@
 const bcrypt = require('bcrypt');
 const debug = require('debug')('app:user-controller');
 const jwt = require('jsonwebtoken');
-const { getWalletID, message } = require('../utils/utils');
+const { getWalletID, message, getToken, validateToken } = require('../utils/utils');
 const User = require('../models/User.model');
 const userController = {}; 
 
-const getToken = (user) => {
-    const token = jwt.sign({
-        data: {email: user.email, username: user.username, role: user.rol}
-    }, process.env.TOKEN)
-    return token;
-}
 
-const validateToken = (token) => {
-    let payload = null;
-    try {
-        payload = jwt.verify(token, process.env.TOKEN);
-    } catch(e) {
-    }
-    return payload;
+userController.getById = async (req, res) => {
+    return res.status(200).json(res.user);
 }
 
 userController.getByEmail = async (req, res) => {
@@ -44,16 +33,24 @@ userController.getByEmail = async (req, res) => {
 
 userController.login = async(req, res) => {
     const { email, password } = req.body;
-    const user = await User.findOne({email});
-    let match = false;
-    if (user) {
-        match = await bcrypt.compare(password, user.password);
-        if (match) {
-            const token = getToken(user);
-            return res.status(200).json({response: message(true, 'Ha iniciado sesión correctamente'), token});
+    try {
+        const user = await User.findOne({email});
+        let match = false;
+        if (user) {
+            match = await bcrypt.compare(password, user.password);
+            if (match) {
+                const token = getToken(user);
+                user.tokens = [...user.tokens.filter(_token => validateToken(_token)), token];
+                await user.save();
+                return res.status(200).json({response: message(true, 'Ha iniciado sesión correctamente'), token});
+            }
+            else
+                return res.status(401).json(message(false, 'Credenciales erróneas'));
         }
-        else
-            return res.status(400).json({error: "Credenciales erróneas"});
+
+    } catch(e) {
+        debug(e);
+        return res.status(500).json(message(false, 'Error interno'));
     }
 }
 
