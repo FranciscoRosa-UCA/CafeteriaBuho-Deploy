@@ -8,6 +8,9 @@ import Icon from "../Icon/Icon";
 
 const AdminMenu = () => {
 
+    const categoria_act = "CATEGORIA_TEMP";
+    const extra_act = "EXTRA_TEMP";
+
     const [form, setForm] = useState({});
 
     const handleForm = (name, value) => {
@@ -90,19 +93,19 @@ const AdminMenu = () => {
                         Extras
                     </h1>
                     <div className="items">
-                        <p>Extra 1</p>
+                        <p>{extra_act}</p>
                         <Icon _type="delete"></Icon>                 
                     </div>
                     <div className="items">
-                        <p>Extra 2</p>
+                        <p>{extra_act}</p>
                         <Icon _type="delete"></Icon>                 
                     </div>
                     <div className="items">
-                        <p>Extra 1</p>
+                        <p>{extra_act}</p>
                         <Icon _type="delete"></Icon>                 
                     </div>
                     <div className="items">
-                        <p>Extra 1</p>
+                        <p>{extra_act}</p>
                         <Icon _type="delete"></Icon>                 
                     </div>
                 </div>
@@ -111,22 +114,21 @@ const AdminMenu = () => {
                         Categorias
                     </h1>
                     <div className="items">
-                        <p>Categoria 1</p>
+                        <p>{categoria_act}</p>
                         <Icon _type="delete"></Icon>
                     </div>
                     <div className="items">
-                        <p>Categoria 1</p>
+                        <p>{categoria_act}</p>
                         <Icon _type="delete"></Icon>
                     </div>
                     <div className="items">
-                        <p>Categoria 1</p>
+                        <p>{categoria_act}</p>
                         <Icon _type="delete"></Icon>
                     </div>
                     <div className="items">
-                        <p>Categoria 1</p>
+                        <p>{categoria_act}</p>
                         <Icon _type="delete"></Icon>
                     </div>
-                    
                 </div>
             </div>
             <div className="cargar-imagen">
