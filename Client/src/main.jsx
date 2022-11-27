@@ -26,7 +26,6 @@ import Payment from './Components/Payment/Payment';
 import PaymentFailed from './Components/PaymentFailed/PaymentFailed';
 import QrPayment from './Components/QrPayment/QrPayment';
 import Recarga from './Components/Recarga/Recarga';
-import Menu from './Components/Container/MenuContainer/Menu/Menu';
 import AdminMenu from './Components/AdminMenu/AdminMenu';
 import Saucer from './Components/Container/Administrator/Saucer/Saucer';
 import SaucerContainer from './Components/Container/Administrator/Saucer/SaucerContainer/SaucerContainer';
@@ -94,10 +93,8 @@ const router = createBrowserRouter([
         element: <Recarga/>
       },
       {
-        path: '/adminmenu',
-        element: <AdminMenu/>
         path: '/admin/menu',
-        element: <Saucer />,
+        element: <Saucer/>,
         children: [
           {
             path: '/admin/menu/:id',

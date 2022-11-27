@@ -5,7 +5,6 @@ import "./AdminMenu.css"
 
 import Button from "../Button/Button";
 import Icon from "../Icon/Icon";
-import Combobox from "react-widgets/Combobox";
 
 const AdminMenu = () => {
 
