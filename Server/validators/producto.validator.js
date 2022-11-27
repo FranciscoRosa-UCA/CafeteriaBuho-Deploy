@@ -48,4 +48,12 @@ validations.delete = [
     .notEmpty().withMessage('Debe proveer el id del producto que desea eliminar').bail()
     .isMongoId().withMessage('Debe proveer un id válidos')
 ];
+
+validations.setDia = [
+    body("productos")
+    .isArray().withMessage('Debe proveer un arreglo válido de productos'),
+    body('dia')
+    .notEmpty().withMessage('Debe proveer un el dia que desea darle al producto').bail()
+    .isMongoId().withMessage('Debe proveer un id válido')
+];
 module.exports = validations;

@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import {ConfigProvider} from './contexts/ConfigContext';
-
+import { UserContextProvider } from './contexts/UserContext';
 import Login from './Components/Authentication/Login/Login';
 import Register from './Components/Authentication/Register/Register';
 import MainHeader from './Components/Header/Header';
@@ -121,8 +121,10 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
       <ConfigProvider>
-        <RouterProvider router={router} >
-        </RouterProvider>
+        <UserContextProvider>
+          <RouterProvider router={router} >
+          </RouterProvider>
+        </UserContextProvider>
       </ConfigProvider>
   </React.StrictMode>
 )

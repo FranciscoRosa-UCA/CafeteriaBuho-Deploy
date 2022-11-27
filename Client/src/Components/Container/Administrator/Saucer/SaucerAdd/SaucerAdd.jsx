@@ -5,17 +5,18 @@ import "./SaucerAdd.css"
 
 import Button from "../../../../Button/Button";
 import Icon from "../../../../Icon/Icon";
-import Combobox from "react-widgets/Combobox";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const SaucerAdd = () => {
     const [form, setForm] = useState({});
-    const [tipos, setTipo] = useState([]);
+    const [categorias, setCategoria] = useState([]);
     const [currentFile, setFile] = useState(null);
+    const {id} = useParams();
     const getTipos = async () => {
         try {
-            let {data} = await axios.get('/tipos/getAll');
-            setTipo(data);
+            let {data} = await axios.get('/categoria/getAll');
+            setCategoria(data);
         } catch (e) {
 
         }
@@ -27,8 +28,18 @@ const SaucerAdd = () => {
         setForm({...form, [name]: value});
     }
 
-    const handleSubmit = () => {
-        console.log(form);
+    const handleSubmit = async () => {
+        try {
+            await axios.post('/producto/add', {...form, currentFile, tipo:id},
+            {
+                headers:{
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+        } catch(e) {
+            console.log(e);
+        }
     }
     const uploadHandler = (file) => {
         if (file) {
@@ -45,15 +56,14 @@ const SaucerAdd = () => {
                 data={["Tipo de platillo", "Platillo", "Acompañamiento", "Extra", "Principal"]}
                 /> */}
                 <div className="flex flex-row flex-wrap gap-6 w-full justify-between">
-                    <select name="" id="" className="w-2/12 inp rounded-xl p-2" onChange={(e)=>handleForm('tipo', e.target.value)}>
-                        <option value="">Tipo de platillo</option>
+                    <select name="" id="" className="w-2/12 inp rounded-xl p-2" onChange={(e)=>handleForm('categoriaId', e.target.value)}>
+                        <option value="">Seleccionar una categoria</option>
                         {
-                            tipos.map(tipo => {
-                                return <option key={tipo._id} value={tipo._id}>{tipo.nombre}</option>
+                            categorias.map(categoria => {
+                                return <option key={categoria._id} value={categoria._id}>{categoria.nombre}</option>
                             })
                         }
                     </select>
-                    <input type="search" placeholder="Buscar" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" />
                 </div>
                 <div className="flex flex-row flex-wrap gap-6 w-full justify-between">
                     <input type="text" placeholder="Nombre" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('nombre', e.target.value)}/>

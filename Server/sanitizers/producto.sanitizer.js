@@ -26,8 +26,8 @@ sanitizer.create = async(req, res, next) => {
         anidados,
         descripcion
     }         = req.body;
-
-    dias = JSON.parse(dias);
+    if (dias)
+        dias = JSON.parse(dias);
 
     // categorias = JSON.parse(categorias);
     // categorias = categorias.map(el => {

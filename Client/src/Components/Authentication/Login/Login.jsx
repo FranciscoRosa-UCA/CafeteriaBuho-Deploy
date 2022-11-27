@@ -1,29 +1,26 @@
-import {React, useState} from "react";
+import {React, useEffect, useState} from "react";
 import "./Login.css"
 import axios from 'axios';
 import Button from "../../Button/Button";
-
+import { useUserContext } from "../../../contexts/UserContext";
 
 const Login = () => {
-
+    const {login, register, token, user} = useUserContext();
     const [form, setForm] = useState({});
-
+    useEffect(() => {
+        if (token){}
+            // window.location.pathname ='/user/';
+    }, []);
+    useEffect(() => {
+        if (user)
+            window.location.pathname ='/';
+    }, [user]);
     const handleForm = (name, value) => {
         setForm({...form, [name]: value});
     }
 
-    const handleSubmit = () => {
-        axios.post('/user/login', form)
-        .then (data => {
-            if (data.statusText == 'OK') {
-                localStorage.setItem('token', data.data.token);
-                window.location.pathname = '/';
-            }
-        })
-        .catch(e => {
-            if (e.response)
-                console.log(e.response.data.error);
-        });
+    const handleSubmit = async() => {
+        await login(form.email, form.password);
     }
 
 

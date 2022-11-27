@@ -1,12 +1,67 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import MenuHeader from "./MenuHeader/MenuHeader";
-
+import MenuFooter from "./MenuFooter/MenuFooter";
+import MenuAddModal from "./MenuAddModal/MenuAddModal";
+import axios from 'axios';
+import Menu from "./Menu/Menu";
 const MenuContainer = () => {
+    const [modal, showModal] = useState(false);
+    const [categorias, setCategoria] = useState([]);
+    const [dias, setDays] = useState([]);
+    const [dia, setDia] = useState([]);
+
+    const addProductHandler = () => {
+        showModal(true);
+    }
+
+    const closeHandler = () => {
+        showModal(false);
+    }
+    
+    const addProductSubmitHandler = async (form) => {
+        try {
+            let productos = [];
+            for (let element in form)
+                if (form[element])
+                    productos.push(element);
+            
+            console.log({productos, dia:dia});
+            await axios.patch('/producto/setDia', {productos, dia});
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    const getDays = async () => {
+        try {
+            let {data} = await axios.get('/dias');
+            setDays(data.dias);
+        } catch(e) {
+            console.log(e);
+        }
+    }
+    const getProductosHandler = async (dia) => {
+        try {
+            setDia(dia);
+            let {data} = await axios.get(`/producto/getByDay/${dia}`);
+            setCategoria(data);
+        } catch(e) {
+            console.log(e);
+        }
+    }
+    useEffect(()=> {
+        getDays();
+    }, []);
+
     return(
         <>
-            <MenuHeader></MenuHeader>
-            <Outlet></Outlet>
+            <MenuHeader dias={dias} getProductosHandler={getProductosHandler}></MenuHeader>
+            <Menu categorias={categorias}></Menu>
+            {
+                modal && <MenuAddModal handleSubmit={addProductSubmitHandler} closeHandler={closeHandler}/>
+            }
+            <MenuFooter handler={addProductHandler}></MenuFooter>
         </>
     );
 };
