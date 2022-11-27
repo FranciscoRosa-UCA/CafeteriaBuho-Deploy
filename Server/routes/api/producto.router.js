@@ -7,7 +7,7 @@ const productoController = require('../../controllers/producto.controller');
 const productoValidators = require('../../validators/producto.validator');
 const runValidations = require('../../validators/index.validator');
 const productoSanitizer = require('../../sanitizers/producto.sanitizer');
-
+router.get('/getAll', productoController.getAll);
 router.get('/getByDay/:id',
             productoValidators.getBySomeId,
             runValidations,
@@ -22,8 +22,8 @@ router.get('/:id', productoController.getById);
 
 // router.get('/:dia/:categoria', productoController.getByCategory);
 
-router.post('/',
-    upload.single('imagen'),
+router.post('/add',
+    upload.single('currentFile'),
     productoValidators.create,
     runValidations,
     productoSanitizer.create,
@@ -31,10 +31,15 @@ router.post('/',
 );
 
 router.patch('/',
-    upload.single('imagen'),
+    upload.single('currentFile'),
     productoValidators.create,
     runValidations,
     productoController.update);
+
+router.patch('/setDia',
+    productoValidators.setDia,
+    runValidations,
+    productoController.setDia);
 
 router.delete('/',
     productoValidators.delete,

@@ -4,14 +4,20 @@ import "./Account.css"
 import Button from "../../../../Button/Button";
 import Icon from "../../../../Icon/Icon";
 import { useConfigContext } from "../../../../../contexts/ConfigContext";
+import { useUserContext } from "../../../../../contexts/UserContext";
 const Account = () => {
     const {loading} = useConfigContext();
+    const {token, user} = useUserContext();
     const [form, setForm] = useState({});
     const [currentFile, setFile] = useState({});
+    // console.log(user);
+    // if (!user)
+    //     window.location.pathname = '/login'
+    useEffect(() => {
+        if (user)
+            setForm(user);
+    }, [user])
 
-    useEffect(()=>{
-        getUser();
-    }, []);
     const getUser = async () => {
         if (localStorage.getItem('token')) {
             try {
