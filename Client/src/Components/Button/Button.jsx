@@ -23,7 +23,7 @@ const Button = ({children, handler, _color="yellow"}) => {
       <ThemeProvider theme={theme}>
         <ThisButton variant="contained" color={_color} size="large"
           onClick={() => {
-              handler? handler() : 0;
+              handler? handler() : null;
           }}
           >
             {children}

@@ -21,12 +21,15 @@ import Configuration from './Components/Container/Client/ContainerAccount/Config
 import ContainerAccount from './Components/Container/Client/ContainerAccount/ContainerAccount';
 import Account from './Components/Container/Client/ContainerAccount/Account/Account';
 import Menu from './Components/Container/Client/MenuContainer/Menu/Menu';
-import SaucerAdd from './Components/Container/Administrator/SaucerAdd/SaucerAdd';
 import Carrito from './Components/Carrito/Carrito';
 import Payment from './Components/Payment/Payment';
 import PaymentFailed from './Components/PaymentFailed/PaymentFailed';
 import QrPayment from './Components/QrPayment/QrPayment';
 import Recarga from './Components/Recarga/Recarga';
+import Saucer from './Components/Container/Administrator/Saucer/Saucer';
+import SaucerContainer from './Components/Container/Administrator/Saucer/SaucerContainer/SaucerContainer';
+import CategoriesAdd from './Components/Container/Administrator/CategoriesAdd/CategoriesAdd';
+
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const router = createBrowserRouter([
@@ -89,9 +92,19 @@ const router = createBrowserRouter([
         element: <Recarga/>
       },
       {
-        path: '/admin/platillo',
-        element: <SaucerAdd />
+        path: '/admin/menu',
+        element: <Saucer />,
+        children: [
+          {
+            path: '/admin/menu/:id',
+            element: <SaucerContainer/>
+          }
+        ]
       },
+      {
+        path: '/admin/categorias',
+        element: <CategoriesAdd />
+      }
     ]
   },
   {
