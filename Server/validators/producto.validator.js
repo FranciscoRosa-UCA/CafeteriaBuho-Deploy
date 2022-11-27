@@ -5,7 +5,7 @@ const {isArrayFormat} = require('../utils/utils');
 
 const validations = {};
 
-validations.getByDay = [
+validations.getBySomeId = [
     param('id')
     .isMongoId().withMessage('Debe brindar un dia válido') 
 ];

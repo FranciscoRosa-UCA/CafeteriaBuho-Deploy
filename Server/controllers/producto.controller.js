@@ -28,6 +28,11 @@ productoController.getByCategory = (req, res) => {
     return res.status(200).json({dia, categoria});
 }
 
+productoController.getByTipo = async(req, res) => {
+    let { id } = req.params;
+    let productos = await Producto.find({tipo:id}).select(['-__v', '-updatedAt', '-createdAt']);
+    return res.status(200).json({productos});
+}
 productoController.create = async (req, res) => {
     // De sanitizer viene un objeto llamado res.product
     try {
