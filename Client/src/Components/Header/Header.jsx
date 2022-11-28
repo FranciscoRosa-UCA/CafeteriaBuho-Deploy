@@ -24,19 +24,19 @@ const MainHeader = () => {
     }
     return(
         <>
-            <header className="relative w-full rounded-xl flex justify-between px-5 py-5">
+            <header className="relative w-full rounded-xl flex gap-10 justify-between p-5">
 
-                <div className="flex items-center gap-x-10">
+                <div className="flex items-center gap-10">
                     <a href='/'><Icon _type="home" ></Icon></a>          
                     <nav>
-                        <ul className="flex items-center gap-x-10 text-xl">
+                        <ul className="flex flex-wrap justify-center items-center gap-10 text-xl text-center">
                             <a href='/menu'><li>Menú del día</li></a>
                             <a href='/admin/menu'><li>Administrar menú</li></a>
                             <a href='/admin/categorias'><li>Administrar categorias</li></a>
                         </ul>
                     </nav>
                 </div>
-                <div className="flex items-center gap-x-10">
+                <div className="flex flex-wrap justify-center items-center gap-10">
                     <figure className="cursor-pointer">
                         <Icon handler={walletHandler} _type="wallet" ></Icon>
                     </figure>
