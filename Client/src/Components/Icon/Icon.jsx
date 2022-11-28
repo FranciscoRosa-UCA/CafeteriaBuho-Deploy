@@ -49,7 +49,7 @@ const Icon = ({_type="home", _size="large", _color="yellow", handler}) => {
                 return <ShoppingCartIcon onClick={handler} color={_color} fontSize={_size} label="Clickable"></ShoppingCartIcon>
 
             case "addShopping":
-                return <AddShoppingCartIcon color={_color} fontSize={_size} label="Clickable"></AddShoppingCartIcon>
+                return <AddShoppingCartIcon onClick={handler} color={_color} fontSize={_size} label="Clickable"></AddShoppingCartIcon>
     
             case "account":
                 return <AccountCircleIcon color={_color} fontSize={_size} label="Clickable"></AccountCircleIcon>

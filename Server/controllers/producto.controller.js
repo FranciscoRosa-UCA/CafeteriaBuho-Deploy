@@ -36,9 +36,10 @@ productoController.getByDay = async (req, res) => {
     return res.status(200).json(categorias);
 }
 
-productoController.getById = (req, res) => {
+productoController.getById = async (req, res) => {
     let { id } = req.params;
-    return res.status(200).json({id});
+    let producto = await Producto.findById(id);
+    return res.status(200).json(producto);
 }
 
 productoController.getByCategory = (req, res) => {
