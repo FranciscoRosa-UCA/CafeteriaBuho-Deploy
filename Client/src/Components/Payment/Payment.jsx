@@ -7,6 +7,7 @@ import { useUserContext } from "../../contexts/UserContext";
 const Payment = ({ handler, recargarHandler, compraHandler }) => {
     const {user} = useUserContext();
     const {subtotal} = useCartContext();
+
     return(
         // <div className="absolute  top-0">
             <div className="rounded-xl bg-main-bg w-full md:w-96 md:h-3/4 h-full z-50 absolute md:right-3 shadow-[0_0_20px_1px_rgba(0,0,0,0.3)]">

@@ -3,6 +3,7 @@ import "./Login.css"
 import axios from 'axios';
 import Button from "../../Button/Button";
 import { useUserContext } from "../../../contexts/UserContext";
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const {login, register, token, user} = useUserContext();
@@ -22,7 +23,15 @@ const Login = () => {
     const handleSubmit = async() => {
         await login(form.email, form.password);
     }
-
+    const AlertWrongField = () =>{
+        Swal.fire({
+            icon: 'error',
+            title: 'Usuario o contraseña invalidos',
+            color: '#fff',
+            background: '#14213D',
+            footer: '<p class="text-center" href="">¿No recuerdas tus credenciales?, contactanos: buhouca@uca.edu.sv</p>'
+          })
+    }
 
     return(
         <div className="flex flex-col  items-center justify-center gap-10 w-full h-screen">

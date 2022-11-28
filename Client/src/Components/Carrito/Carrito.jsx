@@ -3,8 +3,25 @@ import Button from "../Button/Button";
 import "./Carrito.css";
 import Icon from "../Icon/Icon";
 import { useCartContext } from "../../contexts/CartConext";
-const Carrito = ({handler, hacerPedidoHandler}) => {
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const Carrito = ({handler}) => {
+    const Carrito = ({handler, hacerPedidoHandler}) => {
     let { productosCarrito, removeProducto, subtotal } = useCartContext();
+    const AlertEmptyCart = () => {
+        toast.error('🦄 El carrito está vacío!', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
+    }
     
     return(
         <div className="rounded-xl bg-main-bg w-full md:w-96 md:h-3/4 h-full z-50 absolute md:right-3 shadow-[0_0_20px_1px_rgba(0,0,0,0.3)]">
@@ -36,6 +53,18 @@ const Carrito = ({handler, hacerPedidoHandler}) => {
                     }</p>
                     <Button handler={hacerPedidoHandler}>Hacer pedido</Button>
                 </div>
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                />
             </div>
         </div>
     );
