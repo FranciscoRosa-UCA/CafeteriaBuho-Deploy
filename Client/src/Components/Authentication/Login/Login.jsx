@@ -28,7 +28,9 @@ const Login = () => {
         Swal.fire({
             icon: 'error',
             title: 'Usuario o contraseña invalidos',
-            footer: '<a class="text-center" href="">¿No recuerdas tus credenciales?, contactanos: buhouca@uca.edu.sv</a>'
+            color: '#fff',
+            background: '#14213D',
+            footer: '<p class="text-center" href="">¿No recuerdas tus credenciales?, contactanos: buhouca@uca.edu.sv</p>'
           })
     }
 
