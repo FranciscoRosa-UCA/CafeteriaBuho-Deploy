@@ -17,23 +17,26 @@ productoController.getAll = async (req, res) => {
 
 productoController.getByDay = async (req, res) => {
     let { id } = req.params;
-    let data = await Producto.find({dias: id});
-    let _categorias = {};
-    data.forEach(platillo => {
-        if (!_categorias[platillo.categoria])
-            _categorias[platillo.categoria] = [];
-        _categorias[platillo.categoria].push(platillo);
-    })
-    let categorias = [];
-
-    for (let _categoria in _categorias) {
-        categorias.push({
-            nombre: _categoria,
-            productos: _categorias[_categoria]
-        });
+    try {
+        let data = await Producto.find({dias: id});
+        let _categorias = {};
+        data.forEach(platillo => {
+            if (!_categorias[platillo.categoria])
+                _categorias[platillo.categoria] = [];
+            _categorias[platillo.categoria].push(platillo);
+        })
+        let categorias = [];
+    
+        for (let _categoria in _categorias) {
+            categorias.push({
+                nombre: _categoria,
+                productos: _categorias[_categoria]
+            });
+        }
+        return res.status(200).json(categorias);
+    } catch (e) {
+        return res.status(500).json(message(false, 'Error interno'));
     }
-
-    return res.status(200).json(categorias);
 }
 
 productoController.getById = async (req, res) => {
@@ -53,7 +56,6 @@ productoController.getByTipo = async(req, res) => {
     let tipo = null;
     let productos = await Producto.find({tipo:id}).select(['-__v', '-updatedAt', '-createdAt']);
     tipo = await TipoModel.findById(id);
-    console.log(tipo);
     return res.status(200).json({productos, nombreTipo: tipo.nombre});
 }
 productoController.create = async (req, res) => {
@@ -86,7 +88,11 @@ productoController.setDia = async (req, res) => {
     try {
         let {productos, dia} = req.body;
         productos.forEach(async (producto) => {
-            await Producto.findByIdAndUpdate(producto, {dias: dia});
+            let _producto = await Producto.findById(producto);
+            if (!_producto.dias.includes(dia)) {
+                 _producto.dias.push(dia);
+                 await _producto.save();
+            }
         });
         return res.status(200).json(message(true, 'productos actualizados correctamente'));
     } catch(e) {

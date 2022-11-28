@@ -23,7 +23,6 @@ const Login = () => {
     const handleSubmit = async() => {
         await login(form.email, form.password);
     }
-
     const AlertWrongField = () =>{
         Swal.fire({
             icon: 'error',
@@ -46,7 +45,7 @@ const Login = () => {
 
                 <div className="flex flex-col w-9/12 gap-4 items-center">
                     <div className="w-11/12 flex flex-col">
-                        <Button handler={AlertWrongField}>Iniciar sesíon</Button>
+                        <Button handler={handleSubmit}>Iniciar sesíon</Button>
                     </div>
                     <div className="w-11/12 flex flex-col">
                         <Button _color={"dark"}>Iniciar sesíon con google</Button>

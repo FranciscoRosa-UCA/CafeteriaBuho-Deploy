@@ -10,6 +10,11 @@ validations.getBySomeId = [
     .isMongoId().withMessage('Debe brindar un dia válido') 
 ];
 
+validations.getByDay = [
+    param('id')
+    .isNumeric().withMessage('Debe brindar un dia válido') 
+];
+
 validations.create = [
     body("nombre")
     .notEmpty().trim()
@@ -18,11 +23,11 @@ validations.create = [
     body("precio")
     .isFloat({min:0}).withMessage("El elemento debe tener precio"),
 
-    body("dias")
-    .optional()
-    .custom((value) => {
-        return isArrayFormat(value);
-    }).withMessage("Los días deben ser un arreglo válido"),
+    // body("dias")
+    // .optional()
+    // .custom((value) => {
+    //     return isArrayFormat(value);
+    // }).withMessage("Los días deben ser un arreglo válido"),
 
     body("categoriaId")
     .notEmpty().withMessage("El elemento debe pertenecer a una categoría").bail()
@@ -53,7 +58,6 @@ validations.setDia = [
     body("productos")
     .isArray().withMessage('Debe proveer un arreglo válido de productos'),
     body('dia')
-    .notEmpty().withMessage('Debe proveer un el dia que desea darle al producto').bail()
-    .isMongoId().withMessage('Debe proveer un id válido')
+    .isNumeric().withMessage('Debe proveer un el dia que desea darle al producto')
 ];
 module.exports = validations;

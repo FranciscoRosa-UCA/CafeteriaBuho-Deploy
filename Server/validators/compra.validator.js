@@ -10,9 +10,7 @@ validations.comprar = [
     .isEmail().trim().withMessage("Se debe proveer el email de quien compra"),
 
     body("productos")
-    .custom(value => {
-        return isArrayFormat(value);
-    }).withMessage("Debe proveer un arreglo de productos para comprar")
+    .isArray().withMessage("Debe proveer un arreglo de productos para comprar")
 ];
 
 module.exports = validations;

@@ -2,11 +2,14 @@ import React from "react";
 import Button from "../Button/Button";
 import "./Carrito.css";
 import Icon from "../Icon/Icon";
+import { useCartContext } from "../../contexts/CartConext";
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Carrito = ({handler}) => {
-
+    const Carrito = ({handler, hacerPedidoHandler}) => {
+    let { productosCarrito, removeProducto, subtotal } = useCartContext();
     const AlertEmptyCart = () => {
         toast.error('🦄 El carrito está vacío!', {
             position: "bottom-right",
@@ -26,20 +29,29 @@ const Carrito = ({handler}) => {
             <div className="gap-2 h-full flex flex-col justify-between items-center p-3">
                 <h1 className="titulo">Carrito</h1>
                 <div className="h-full w-full overflow-y-auto">
-                    <div className="w-full items-start flex flex-row justify-between overflow-y-auto">
-                        <figure className="w-24 h-24">
-                            <img src="https://res.cloudinary.com/dvbuu8u2x/image/upload/v1666536043/olympic_flag.jpg" alt="prueba" className="w-full cover"/>
-                        </figure>
-                        <div className="description">
-                            <p>Coca Cola</p>
-                            <p>1 x $5.00</p>
-                        </div>
-                        <Icon _type="delete"></Icon>
-                    </div>
+                    {productosCarrito.length>0 ?
+                        productosCarrito.map(producto => {
+                            return <div key={producto._id} className="w-full items-start flex flex-row justify-between overflow-y-auto">
+                                <figure className="w-24 h-24">
+                                    <img src={producto.imagen} alt="imagen de producto" className="w-full cover"/>
+                                </figure>
+                                <div className="description">
+                                    <p>{producto.nombre}</p>
+                                    <p>{producto.cantidad} x ${producto.precio}</p>
+                                </div>
+                                <Icon handler={()=> {removeProducto(producto._id)}} _type="delete"></Icon>
+                            </div>
+                        })
+                        :<h2>No hay productos en el carrito</h2>
+                    }
                 </div>
                 <div className="w-full flex flex-col gap-1">
-                    <p className="subtotal">Subtotal $10.75</p>
-                    <Button handler={AlertEmptyCart}>Hacer pedido</Button>
+                    <p className="subtotal">Subtotal ${
+                        productosCarrito.length>0
+                        ? subtotal
+                        : '-'
+                    }</p>
+                    <Button handler={hacerPedidoHandler}>Hacer pedido</Button>
                 </div>
                 <ToastContainer
                     position="bottom-right"
