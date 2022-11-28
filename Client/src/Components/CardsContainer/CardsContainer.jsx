@@ -8,7 +8,7 @@ const CardsContainer = ({_category="Destacado", _flex="row", _wrap="nowrap", pla
             <div className={`flex flex-${_flex} flex-${_wrap} gap-10 justify-between overflow-x-scroll`}>
                 {
                     platillos.map(platillo => {
-                        return <Card key={platillo._id} _name={platillo.nombre} _price={platillo.precio} _image={platillo.imagen}></Card>
+                        return <Card key={platillo._id} _id={platillo._id} _name={platillo.nombre} _price={platillo.precio} _image={platillo.imagen}></Card>
                     })
                 }
                 {/* <Card _name={"Plato 1"} _price={"23.30"} _image={"https://tipsparatuviaje.com/wp-content/uploads/2020/02/tamales-comida.jpg"}></Card>
