@@ -15,14 +15,15 @@ const Payment = ({ handler, recargarHandler, compraHandler }) => {
                 <div className="components-container">
                     <h1 className="titulo">Billetera</h1>
                     <figure className="w-52 h-52 rounded-full overflow-hidden">
-                        <img src={user.foto || 'https://res.cloudinary.com/dvbuu8u2x/image/upload/v1666536043/olympic_flag.jpg'} alt="foto de usuario" className="w-full h-full object-cover"/>
+                        <img src={user && user.foto || 'https://res.cloudinary.com/dvbuu8u2x/image/upload/v1666536043/olympic_flag.jpg'} alt="foto de usuario" className="w-full h-full object-cover"/>
                     </figure>
-                    <h2 className="identificacion">{user.wallet.qr}</h2>
+                    <h2 className="identificacion">{user && user.wallet.qr}</h2>
                     <div className="detalle">
-                        <p>Saldo actual: ${user.wallet.ucoins}</p>
+                        <p>Saldo actual: ${user && user.wallet.ucoins}</p>
                         <p>Total a pagar: $ {subtotal}</p>
                         {
-                            user.wallet.ucoins > subtotal
+                            user &&
+                                user.wallet.ucoins > subtotal
                             ?<p>Saldo final: $ {user.wallet.ucoins - subtotal}</p>
                             :<p>¡No es posible realizar el pedido!</p>
                         }
@@ -30,7 +31,8 @@ const Payment = ({ handler, recargarHandler, compraHandler }) => {
                     </div>
                     <div className="interaccion">
                     {
-                        user.wallet.ucoins > subtotal
+                        user &&
+                            user.wallet.ucoins > subtotal
                         ?<Button handler={compraHandler}>Continuar</Button>
                         :<Button handler={recargarHandler}>Recargar billetera</Button>
                     }

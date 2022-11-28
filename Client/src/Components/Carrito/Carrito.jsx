@@ -7,8 +7,7 @@ import { useCartContext } from "../../contexts/CartConext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Carrito = ({handler}) => {
-    const Carrito = ({handler, hacerPedidoHandler}) => {
+const Carrito = ({handler, hacerPedidoHandler}) => {
     let { productosCarrito, removeProducto, subtotal } = useCartContext();
     const AlertEmptyCart = () => {
         toast.error('🦄 El carrito está vacío!', {
