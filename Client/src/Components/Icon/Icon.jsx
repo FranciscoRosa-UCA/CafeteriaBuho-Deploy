@@ -43,7 +43,7 @@ const Icon = ({_type="home", _size="large", _color="yellow", handler}) => {
                 return <HomeIcon color={_color} fontSize={_size} label="Clickable"></HomeIcon>
 
             case "delete":
-                return <DeleteIcon color={_color} fontSize={_size} label="Clickable"></DeleteIcon>
+                return <DeleteIcon onClick={handler} color={_color} fontSize={_size} label="Clickable"></DeleteIcon>
 
             case "shopping":
                 return <ShoppingCartIcon onClick={handler} color={_color} fontSize={_size} label="Clickable"></ShoppingCartIcon>

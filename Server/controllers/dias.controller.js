@@ -1,12 +1,13 @@
-const Dias = require('../models/Dias.model');
+const debug = require('debug')('app:dias-controller')
+const Dias = require('../data/dias');
 const { message } = require('../utils/utils');
 const diasController = {};
 
-diasController.getAll = async (req, res) => {
+diasController.getAll = (req, res) => {
     try {
-        let dias = await Dias.find();
-        return res.status(200).json({dias});
+        return res.status(200).json({dias:Dias});
     } catch(e) {
+        debug(e);
         return res.status(500).json(message(false, 'Error interno'));
     }
 }

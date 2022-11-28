@@ -8,7 +8,7 @@ const MenuContainer = () => {
     const [modal, showModal] = useState(false);
     const [categorias, setCategoria] = useState([]);
     const [dias, setDays] = useState([]);
-    const [dia, setDia] = useState([]);
+    const [dia, setDia] = useState(null);
 
     const addProductHandler = () => {
         showModal(true);
@@ -24,8 +24,6 @@ const MenuContainer = () => {
             for (let element in form)
                 if (form[element])
                     productos.push(element);
-            
-            console.log({productos, dia:dia});
             await axios.patch('/producto/setDia', {productos, dia});
 
         } catch (e) {
@@ -43,7 +41,6 @@ const MenuContainer = () => {
     }
     const getProductosHandler = async (dia) => {
         try {
-            setDia(dia);
             let {data} = await axios.get(`/producto/getByDay/${dia}`);
             setCategoria(data);
         } catch(e) {
@@ -52,8 +49,13 @@ const MenuContainer = () => {
     }
     useEffect(()=> {
         getDays();
+        setDia((new Date()).getDay());
     }, []);
-
+    useEffect(() => {
+        if (dia) {
+            getProductosHandler(dia);
+        }
+    }, [dia]);
     return(
         <>
             <MenuHeader dias={dias} getProductosHandler={getProductosHandler}></MenuHeader>
