@@ -6,8 +6,8 @@ import Icon from "../Icon/Icon";
 const Payment = ({ handler }) => {
     return(
         // <div className="absolute  top-0">
-            <div className="z-50 absolute right-3 general-container shadow-[0_0_20px_1px_rgba(0,0,0,0.3)]">
-                <span onClick={handler} className="cursor-pointer rounded-full text-4xl absolute right-0 top-0">&times;</span>
+            <div className="rounded-xl bg-main-bg w-full md:w-96 md:h-3/4 h-full z-50 absolute md:right-3 shadow-[0_0_20px_1px_rgba(0,0,0,0.3)]">
+                <span onClick={handler} className="cursor-pointer rounded-full text-4xl absolute right-3 top-0">&times;</span>
                 <div className="components-container">
                     <h1 className="titulo">Billetera</h1>
                     <figure>

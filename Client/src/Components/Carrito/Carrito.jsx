@@ -6,7 +6,7 @@ import Icon from "../Icon/Icon";
 const Carrito = ({handler}) => {
     return(
         <div className="rounded-xl bg-main-bg w-full md:w-96 md:h-2/4 h-full z-50 absolute md:right-3 shadow-[0_0_20px_1px_rgba(0,0,0,0.3)]">
-            <span onClick={handler} className="cursor-pointer rounded-full text-4xl absolute right-0 top-0">&times;</span>
+            <span onClick={handler} className="cursor-pointer rounded-full text-4xl absolute right-3 top-0">&times;</span>
             <div className="gap-2 h-full flex flex-col justify-between items-center p-3">
                 <h1 className="titulo">Carrito</h1>
                 <div className="h-full w-full overflow-y-auto">
