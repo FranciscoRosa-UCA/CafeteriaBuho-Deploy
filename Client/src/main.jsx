@@ -10,6 +10,7 @@ import {
 
 import {ConfigProvider} from './contexts/ConfigContext';
 import { UserContextProvider } from './contexts/UserContext';
+import { CartProvider } from './contexts/CartConext';
 import Login from './Components/Authentication/Login/Login';
 import Register from './Components/Authentication/Register/Register';
 import MainHeader from './Components/Header/Header';
@@ -122,8 +123,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
       <ConfigProvider>
         <UserContextProvider>
-          <RouterProvider router={router} >
-          </RouterProvider>
+          <CartProvider>
+            <RouterProvider router={router} >
+            </RouterProvider>
+          </CartProvider>
         </UserContextProvider>
       </ConfigProvider>
   </React.StrictMode>
