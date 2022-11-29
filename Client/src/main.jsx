@@ -10,7 +10,7 @@ import {
 
 import {ConfigProvider} from './contexts/ConfigContext';
 import { UserContextProvider } from './contexts/UserContext';
-import { CartProvider } from './contexts/CartConext';
+import { CartProvider } from './contexts/CartContext';
 import Login from './Components/Authentication/Login/Login';
 import Register from './Components/Authentication/Register/Register';
 import MainHeader from './Components/Header/Header';
@@ -31,7 +31,7 @@ import Saucer from './Components/Container/Administrator/Saucer/Saucer';
 import SaucerContainer from './Components/Container/Administrator/Saucer/SaucerContainer/SaucerContainer';
 import CategoriesAdd from './Components/Container/Administrator/CategoriesAdd/CategoriesAdd';
 import RecargarWallet from './Components/Container/Administrator/RecargarWallet/RecargarWallet';
-
+import { ToastContainer } from 'react-toastify';
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 const router = createBrowserRouter([
@@ -130,6 +130,18 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <CartProvider>
             <RouterProvider router={router} >
             </RouterProvider>
+            <ToastContainer
+                    position="bottom-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                />
           </CartProvider>
         </UserContextProvider>
       </ConfigProvider>

@@ -2,9 +2,9 @@ import React from "react";
 import Button from "../Button/Button";
 import "./Carrito.css";
 import Icon from "../Icon/Icon";
-import { useCartContext } from "../../contexts/CartConext";
+import { useCartContext } from "../../contexts/CartContext";
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Carrito = ({handler, hacerPedidoHandler}) => {
@@ -32,7 +32,7 @@ const Carrito = ({handler, hacerPedidoHandler}) => {
                         productosCarrito.map(producto => {
                             return <div key={producto._id} className="w-full items-start flex flex-row justify-between overflow-y-auto">
                                 <figure className="w-24 h-24">
-                                    <img src={producto.imagen} alt="imagen de producto" className="w-full cover"/>
+                                    <img src={producto.imagen} alt="imagen de producto" className="w-full h-full cover"/>
                                 </figure>
                                 <div className="description">
                                     <p>{producto.nombre}</p>
@@ -52,18 +52,6 @@ const Carrito = ({handler, hacerPedidoHandler}) => {
                     }</p>
                     <button className={(productosCarrito.length>0 ? "" : "cursor-not-allowed") + " text-lg bg-button-bg py-2 rounded-md"} onClick={hacerPedidoHandler}>Hacer pedido</button>
                 </div>
-                <ToastContainer
-                    position="bottom-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="dark"
-                />
             </div>
         </div>
     );

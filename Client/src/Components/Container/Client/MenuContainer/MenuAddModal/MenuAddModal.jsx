@@ -34,32 +34,36 @@ const MenuAddModal = ({handleSubmit,closeHandler}) => {
     }, []);
     return (
         <div className="absolute top-0 right-0 h-full w-full flex justify-center items-center">
-            <div className="bg-main-bg z-50 shadow-shadow relative flex h-1/2 w-100 flex-col ">
-                <span onClick={closeHandler} className="text-center rounded-full w-8 h-8 text-2xl absolute top-0 right-0 bg-black">&times;</span>
+            <div className="bg-main-bg z-50 shadow-shadow relative flex md:h-1/2 md:w-1/2 h-full w-full flex-col p-5 gap-3 justify-between">
+                {/* <span onClick={closeHandler} className="text-center rounded-full w-8 h-8 text-2xl absolute top-0 right-0 bg-black">&times;</span> */}
+                <span onClick={closeHandler} className="cursor-pointer rounded-full text-4xl absolute right-3 top-0">&times;</span>
+
                 <h2>Agregar producto</h2>
                 <hr></hr>
                 <h3>Selecciona el elemento</h3>
-                <form className="flex flex-col">
-                    <div className="flex flex-row">
-                        <input type="search"/>
+                <form className="flex flex-col text-lg gap-2 justify-between overflow-hidden w-full h-full">
+                    <div className="[&>*]:bg-second-bg [&>*]:w-full [&>*]:p-2 [&>*]:rounded-md flex flex-row gap-2">
+                        <input type="search" placeholder="Buscar"/>
                         <select onChange={(e)=>handleForm('categoriaId', e.target.value)}>
-                            <option>Selecciona una categoria</option>
+                            <option className="bg-main-bg">Selecciona una categoria</option>
                             {
                                 categorias.map(categoria => (
-                                    <option key={categoria._id} value={categoria._id}>{categoria.nombre}</option>
+                                    <option className="bg-main-bg" key={categoria._id} value={categoria._id}>{categoria.nombre}</option>
                                 ))
                             }
                         </select>
                     </div>
-                    {
-                        productos.map(producto => (
-                            <label key={producto._id}>
-                                <input onChange={(e)=>handleForm(`${e.target.value}`, (e.target.checked ? true : false))} type="checkbox" name="anidados" value={producto._id}/>
-                                {producto.nombre}
-                            </label>
-                            
-                        ))
-                    }
+                    <div className="overflow-y-auto h-full flex flex-col gap-5">
+                        {
+                            productos.map(producto => (
+                                <label key={producto._id}>
+                                    <input onChange={(e)=>handleForm(`${e.target.value}`, (e.target.checked ? true : false))} type="checkbox" name="anidados" value={producto._id}/>
+                                    {producto.nombre}
+                                </label>
+                                
+                            ))
+                        }                        
+                    </div>
                     <div className="flex flex-row flex-wrap min-w-96 gap-4 justify-between">
                         <div className="w-5/12 flex flex-col">
                             <Button handler={(e) => {handleSubmit(form)}}>Añadir</Button>

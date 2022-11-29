@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "../../Icon/Icon"
-import {useCartContext} from '../../../contexts/CartConext';
+import {useCartContext} from '../../../contexts/CartContext';
 const Card = ({_id, _image, _name, _price}) => {
     const {addProducto} = useCartContext();
     return(

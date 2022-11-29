@@ -53,7 +53,9 @@ const SaucerAdd = ({cancelHandler, recargarHandler}) => {
     return(
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
             <form action="" className="z-50 bg-main-bg shadow-shadow relative text-lg flex flex-col p-2 gap-4">
-                <span onClick={cancelHandler} className="cursor-pointer text-center rounded-full w-8 h-8 text-2xl absolute top-0 right-0 bg-black">&times;</span>
+                {/* <span onClick={cancelHandler} className="cursor-pointer text-center rounded-full w-8 h-8 text-2xl absolute top-0 right-0 bg-black">&times;</span> */}
+                <span onClick={cancelHandler} className="cursor-pointer rounded-full text-4xl absolute right-3 top-0 bg-main-bg">&times;</span>
+                
                 <div className="flex flex-row flex-wrap gap-6 w-full justify-between">
                 </div>
                 <div className="flex justify-between gap-1 [&>*]:w-full [&>*]:bg-second-bg [&>*]:p-2 [&>*]:rounded-md [&>*]:outline-none">
@@ -68,6 +70,10 @@ const SaucerAdd = ({cancelHandler, recargarHandler}) => {
                         })
                     }
                 </select>
+                <label className="select-none">
+                    <input className="self-start mr-2" type="checkbox" onChange={(e)=>{handleForm('destacado', (e.target.checked ? true : false))}}/>
+                    ¿Es un producto destacado?
+                </label>
                 <textarea rows="7" cols="33" placeholder="Descripcion" className="bg-second-bg rounded-md outline-none p-2" onChange={(e)=>handleForm('descripcion', e.target.value)}>
                 </textarea>
 

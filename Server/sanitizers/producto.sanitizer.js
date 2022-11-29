@@ -23,7 +23,8 @@ sanitizer.create = async(req, res, next) => {
         categoriaId,
         tipo,
         anidados,
-        descripcion
+        descripcion,
+        destacado
     }         = req.body;
     if (dias)
         dias = JSON.parse(dias);
@@ -41,7 +42,8 @@ sanitizer.create = async(req, res, next) => {
         tipo,
         anidados,
         descripcion,
-        imagen
+        imagen,
+        destacado
     };
     next();
 };

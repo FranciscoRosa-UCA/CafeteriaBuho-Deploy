@@ -9,6 +9,8 @@ const cors = require('cors');
 const app = express();
 
 const mongodb = require('./config/mongo.db');
+const cloudinary = require('./config/cloudinary');
+
 mongodb.connect();
 const corsOptions = {
     origin: '*',

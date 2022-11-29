@@ -5,10 +5,9 @@ const upload = multer({ dest: '../uploads/' });
 const Role = require('../../data/role');
 const {authentication, authorization} = require('../../middlewares/auth.middleware');
 const productoController = require('../../controllers/producto.controller');
-
+const {subirFoto}= require('../../middlewares/subirFoto.middleware');
 const productoValidators = require('../../validators/producto.validator');
 const runValidations = require('../../validators/index.validator');
-const productoSanitizer = require('../../sanitizers/producto.sanitizer');
 router.get('/getAll', productoController.getAll);
 router.get('/getByDay/:id',
             productoValidators.getByDay,
@@ -25,9 +24,10 @@ router.get('/getByNombreTipo/:nombre',
             runValidations,
             productoController.getByNombreTipo);
 
-router.get('/getAllSimpleProduct/',
+router.get('/getAllSimpleProduct',
             productoController.getAllSimpleProduct);
 
+router.get('/getDestacados', productoController.getDestacados);
 router.get('/:id', productoController.getById);
 
 // router.get('/:dia/:categoria', productoController.getByCategory);
@@ -38,7 +38,7 @@ router.post('/add',
     upload.single('currentFile'),
     productoValidators.create,
     runValidations,
-    productoSanitizer.create,
+    subirFoto,
     productoController.create
 );
 
@@ -48,6 +48,7 @@ router.patch('/',
     upload.single('currentFile'),
     productoValidators.create,
     runValidations,
+    subirFoto,
     productoController.update);
 
 router.patch('/setDia',

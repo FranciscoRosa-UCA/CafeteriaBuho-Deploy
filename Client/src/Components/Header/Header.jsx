@@ -5,17 +5,17 @@ import Carrito from '../Carrito/Carrito';
 import Icon from "../Icon/Icon";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useUserContext } from "../../contexts/UserContext";
-import { useCartContext } from "../../contexts/CartConext";
+import { useCartContext } from "../../contexts/CartContext";
 import QrPayment from "../QrPayment/QrPayment";
 const MainHeader = () => {
-    const {token, user, logout} = useUserContext();
+    const {token, user, logout, authorization} = useUserContext();
     const {comprar} = useCartContext();
     const [menuHidden, setMenuHidden] = useState(true);
     const [wallet, showWallet] = useState(false);
     const [cart, showCart] = useState(false);
     const [recargar, showRecargar] = useState(false);
     const [pedido, showPedido] = useState(false);
-
+    
     const hideAll = () => {
         showWallet(false);
         showCart(false);
@@ -73,10 +73,13 @@ const MainHeader = () => {
                             <MenuIcon fontSize="large"></MenuIcon>
                         </div>
                         <ul className={(menuHidden ? "hidden" : "") + " text-left shadow-shadow p-5 absolute bg-main-bg z-20 rounded-t-md  lg:rounded-none lg:shadow-none lg:static lg:p-0 lg:flex lg:flex-wrap lg:justify-center lg:items-center gap-5 text-xl lg:text-center"}>
-                            <a href='/menu'><li>Menú del día</li></a>
-                            <a href='/admin/menu'><li>Adm. menú</li></a>
-                            <a href='/admin/categorias'><li>Adm. categorias</li></a>
-                            <a href='/admin/wallet'><li>Recargar Wallet</li></a>
+                        <a href='/menu' className="active:text-button-bg"><li>Menú del día</li></a>
+                            <a href='/admin/menu' className={(user && authorization("ADMIN")) ? "" : "hidden" + " active:text-button-bg"}><li>Adm. menú</li></a>
+
+                            <a href='/admin/categorias' className={(user && authorization("ADMIN")) ? "" : "hidden" + " active:text-button-bg"}><li>Adm. categorias</li></a>
+
+                            <a href='/admin/wallet' className={(user && authorization("ADMIN")) ? "" : "hidden" + " active:text-button-bg"}><li>Recargar Wallet</li></a>
+
                             {token && user && <button className="text-[#F5B7B1]" onClick={logout}>Cerrar sesion</button>}
 
                         </ul>

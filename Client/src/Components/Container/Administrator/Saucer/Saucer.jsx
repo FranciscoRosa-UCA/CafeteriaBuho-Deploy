@@ -11,18 +11,17 @@ const Saucer = () => {
     const [platilloModal, showPlatilloModal] = useState(false);
     const [productoModal, showProductoModal] = useState(false);
     const [recargar, emitRecargar] = useState(0);
-        const getTipos = async () => {
-            try {
-                let {data} = await axios.get('/tipos/getAll');
-                setTipo(data);
-                window.location.pathname = '/admin/menu/'+(tipos[0]._id) || '' ;
-            } catch (e) {
-    
-            }
-        };
-        useEffect(()=> {
-            getTipos();
-            // window.location.pathname = '/admin/menu/' + tipos[0]._id;
+    const getTipos = async () => {
+        try {
+            let {data} = await axios.get('/tipos/getAll');
+            setTipo(data);
+            window.location.pathname = '/admin/menu/'+(tipos[0]._id) || '' ;
+        } catch (e) {
+
+        }
+    };
+    useEffect(()=> {
+        getTipos();
     }, []);
     const addHandler = () => {
         if(parseInt(localStorage.getItem('isPlatillo'))){

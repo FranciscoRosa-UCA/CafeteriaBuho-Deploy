@@ -106,8 +106,8 @@ const PlatilloAdd = ( {cancelHandler, recargarHandler} ) => {
 
     return (
         <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
-            <form className="z-50 bg-main-bg shadow-shadow relative text-lg flex flex-col p-2 gap-4">
-                <span onClick={cancelHandler} className="cursor-pointer text-center rounded-full w-8 h-8 text-2xl absolute top-0 right-0 bg-black">&times;</span>
+            <form className="overflow-y-auto h-5/6 z-50 bg-main-bg shadow-shadow relative text-lg flex flex-col p-2 gap-4">
+                <span onClick={cancelHandler} className="cursor-pointer text-center rounded-full w-8 h-8 text-2xl absolute top-0 right-0 bg-main-bg">&times;</span>
 
                 <div className="flex justify-between gap-1 [&>*]:w-full [&>*]:bg-second-bg [&>*]:p-2 [&>*]:rounded-md [&>*]:outline-none">
                     <input type="text" placeholder="Nombre" onChange={(e) => handleForm('nombre', e.target.value)} className="" />
@@ -150,7 +150,7 @@ const PlatilloAdd = ( {cancelHandler, recargarHandler} ) => {
                             })
                         }
                     </select>
-                <div className="flex justify-between gap-1 w-full [&>*]:rounded-md [&>*]:p-2 bg-second-bg w-full">
+                <div className="flex justify-between gap-1 w-full [&>*]:rounded-md">
                     <select className="p-2 bg-second-bg w-full" id="extra">
                         <option className="bg-main-bg" value="">Extra</option>
                         {
@@ -165,7 +165,7 @@ const PlatilloAdd = ( {cancelHandler, recargarHandler} ) => {
                     </div>
                 </div>
 
-                <div className="justify-between gap-1 w-full">
+                <div className="justify-between gap-1 w-full h-full overflow-y-auto">
                         <h3 className="text-lg font-bold text-center">
                             Extras
                         </h3>
@@ -178,7 +178,11 @@ const PlatilloAdd = ( {cancelHandler, recargarHandler} ) => {
                             ))
                         }
                 </div>
-                <textarea rows="7" cols="33" placeholder="Descripcion" className="bg-second-bg rounded-md outline-none p-2" onChange={(e)=>handleForm('descripcion', e.target.value)}>
+                <label className="select-none">
+                    <input className="self-start mr-2" type="checkbox" onChange={(e)=>{handleForm('destacado', (e.target.checked ? true : false))}}/>
+                    ¿Es un producto destacado?
+                </label>
+                <textarea rows="7" cols="33" placeholder="Descripcion" className="h-full bg-second-bg rounded-md outline-none p-2" onChange={(e)=>handleForm('descripcion', e.target.value)}>
                     </textarea>
                 <div className="rounded-md w-full h-56 bg-second-bg flex justify-center items-center"
                     onClick={

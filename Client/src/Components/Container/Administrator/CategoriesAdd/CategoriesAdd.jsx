@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import "./CategoriesAdd.css"
 import axios from "axios";
 import Button from "../../../Button/Button";
@@ -93,7 +93,6 @@ const CategoriesAdd = () => {
                 </div>
 
             </form>
-            <ToastContainer />
         </div>
     );
 };

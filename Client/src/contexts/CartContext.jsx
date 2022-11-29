@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { useUserContext } from "./UserContext";
 const CartContext = React.createContext();
 
@@ -43,8 +44,8 @@ export const CartProvider = (props) => {
                     return match;
             })
         }
-
         setProductosCarrito(_productos);
+        toast.success('¡Producto agregado!');
     }
     const removeProducto = (productoId) => {
         let match = productosCarrito.find(producto => producto._id == productoId);

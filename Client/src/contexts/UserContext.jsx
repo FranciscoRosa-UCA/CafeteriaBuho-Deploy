@@ -61,12 +61,17 @@ export const UserContextProvider = (props) => {
         }
     }
 
+    const authorization = (role = "ADMIN") => {
+        return user.roles.includes(role);
+    }
+
     const state = {
         token,
         user,
         login,
         logout,
-        register
+        register,
+        authorization
     };
     
     return <UserContext.Provider value={state} {...props}></UserContext.Provider>
