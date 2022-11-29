@@ -83,16 +83,22 @@ userController.signup = async(req, res) => {
         wallet
     });
 
-    let _user = await user.save();
-    let token = getToken(_user);
-    if (_user) {
-        return res.status(200).json({
-            response: message(true, "Se ha registrado correctamente"),
-            token
-        });
+    try {
+        let _user = await user.save();
+        let token = getToken(_user);
+        _user.tokens.push(token);
+        await _user.save();
+        if (_user) {
+            return res.status(200).json({
+                response: message(true, "Se ha registrado correctamente"),
+                token
+            });
+        }
+        return res.status(400).json(message(false, "Ha ocurrido un error interno"));
+    } catch(e) {
+        return res.status(500).json(message(false, 'Error interno'));
     }
 
-    return res.status(400).json(false, "Ha ocurrido un error interno");
 }
 
 userController.update = async (req, res) => {

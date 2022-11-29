@@ -34,27 +34,25 @@ const Login = () => {
     }
 
     return(
-        <div className="flex flex-col  items-center justify-center gap-10 w-full h-screen">
-            <form action="" className="flex flex-col gap-14 text-xl w-6/12 items-center justify-center">
+        <div className="w-full h-screen flex flex-col justify-center items-center gap-4 p-4 text-lg">
+            <h2>Hola ucamigo</h2>
+            <form action="" className="flex flex-col gap-4 w-full md:w-2/4 lg:w-1/4">
 
-                <div className="flex flex-col gap-6 w-full justify-center items-center">
-                    <h2>Hola ucamigo</h2>
-                    <input type="email" placeholder="Email" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('email', e.target.value)}/>
-                    <input type="password" placeholder="Contraseña" className="w-9/12 max-w-screen-xl inp rounded-xl p-2" onChange={(e)=>handleForm('password', e.target.value)}/>
-                </div>
+                <input type="email" placeholder="Email" className="w-full max-w-screen-xl inp rounded-md p-2" onChange={(e)=>handleForm('email', e.target.value)}/>
+                <input type="password" placeholder="Contraseña" className="w-full max-w-screen-xl inp rounded-md p-2" onChange={(e)=>handleForm('password', e.target.value)}/>
 
-                <div className="flex flex-col w-9/12 gap-4 items-center">
-                    <div className="w-11/12 flex flex-col">
+                <div className="flex flex-col w-full gap-4 items-center">
+                    <div className="flex flex-col w-full">
                         <Button handler={handleSubmit}>Iniciar sesíon</Button>
                     </div>
-                    <div className="w-11/12 flex flex-col">
+                    <div className="flex flex-col w-full">
                         <Button _color={"dark"}>Iniciar sesíon con google</Button>
                     </div>
                 </div>
 
             </form>
 
-            <div className="flex gap-8 items-center">
+            <div className="text-center text-md">
                 <p>¿No tienes una cuenta?, registrate ahora:</p>
                 <a href='/signup'>Registrarse</a>
             </div>

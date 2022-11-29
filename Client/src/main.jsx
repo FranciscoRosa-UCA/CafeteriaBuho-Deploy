@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App';
+import './App.css';
 import axios from 'axios';
 import './index.css';
 import {
@@ -27,7 +27,6 @@ import Payment from './Components/Payment/Payment';
 import PaymentFailed from './Components/PaymentFailed/PaymentFailed';
 import QrPayment from './Components/QrPayment/QrPayment';
 import Recarga from './Components/Recarga/Recarga';
-import AdminMenu from './Components/AdminMenu/AdminMenu';
 import Saucer from './Components/Container/Administrator/Saucer/Saucer';
 import SaucerContainer from './Components/Container/Administrator/Saucer/SaucerContainer/SaucerContainer';
 import CategoriesAdd from './Components/Container/Administrator/CategoriesAdd/CategoriesAdd';

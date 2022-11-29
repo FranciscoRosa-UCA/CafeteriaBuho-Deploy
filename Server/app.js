@@ -11,10 +11,8 @@ const app = express();
 const mongodb = require('./config/mongo.db');
 mongodb.connect();
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: '*',
 }
-const cloudinary = require('./config/cloudinary');
-const { message } = require('./utils/utils');
 
 app.use(logger('dev'));
 app.use(express.json());

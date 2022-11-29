@@ -49,9 +49,12 @@ export const UserContextProvider = (props) => {
         }
     }
 
-    const register = async (username, email, telefono, password) => {
+    const register = async ({username, email, password}) => {
         try {
-            await axios.post('/user/signup', {username, email, telefono, password});
+            let {data} = await axios.post('/user/signup', {username, email, password});
+            const _token = data.token;
+            setToken(_token);
+            setTokenLocalStorage(_token);
         } catch (e) {
             const {status} = e.response || {status:500};
             console.log(e.response.data.message);
