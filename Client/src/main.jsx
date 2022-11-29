@@ -31,6 +31,7 @@ import AdminMenu from './Components/AdminMenu/AdminMenu';
 import Saucer from './Components/Container/Administrator/Saucer/Saucer';
 import SaucerContainer from './Components/Container/Administrator/Saucer/SaucerContainer/SaucerContainer';
 import CategoriesAdd from './Components/Container/Administrator/CategoriesAdd/CategoriesAdd';
+import RecargarWallet from './Components/Container/Administrator/RecargarWallet/RecargarWallet';
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: '/admin/categorias',
         element: <CategoriesAdd />
+      },
+      {
+        path: '/admin/wallet',
+        element: <RecargarWallet />
       }
     ]
   },

@@ -1,5 +1,6 @@
 const debug = require('debug')('app:categoria-controller');
 const Categoria = require("../models/Categoria.model");
+const Producto = require('../models/Producto.model');
 const {message} = require('../utils/utils');
 const categoriaController = {};
 
@@ -38,10 +39,20 @@ categoriaController.update = async (req, res) => {
 
 categoriaController.delete = async (req, res) => {
     let { id } = req.body;
-    let ok = await Categoria.findByIdAndRemove(id);
-    if (!ok)
-        return res.status(400).json(message(false, 'La categoría que intenta eliminar no existe'));
-    res.status(200).json(message(true, 'Categoría eliminada exitosamente'));
+    try {
+        let productos = await Producto.find({categoria: id});
+        if (productos.length > 0) {
+            let cat = await Categoria.findByIdAndRemove(id);
+            if (!cat)
+                return res.status(400).json(message(false, 'La categoría que intenta eliminar no existe'));
+                
+            return res.status(200).json(message(true, 'Categoría eliminada exitosamente'));
+        } else {
+            return res.status(401).json(message(false, 'No puede eliminar una categoria que contenga productos')); 
+        }
+    }catch(e) {
+        return res.status(500).json(message(false, 'Error interno'));
+    }
 }
 
 module.exports = categoriaController;

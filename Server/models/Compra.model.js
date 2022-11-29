@@ -1,6 +1,15 @@
 const Mongoose = require('mongoose');
 const Schema = Mongoose.Schema;
-
+const ListaProductos = new Schema({
+    id: {
+        type: String,
+        required:true
+    },
+    cantidad: {
+        type: Number,
+        require: true,
+    }
+});
 const CompraSchema = new Schema ({
     email: {
         type:String,
@@ -8,7 +17,7 @@ const CompraSchema = new Schema ({
         required: true
     },
     productos: {
-        type: [String],
+        type: [ListaProductos],
         required: true,
     },
     total: {

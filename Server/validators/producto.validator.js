@@ -5,6 +5,11 @@ const {isArrayFormat} = require('../utils/utils');
 
 const validations = {};
 
+validations.getByNombreTipo = [
+    param('nombre')
+    .notEmpty().withMessage('Debe brindar un nombre de un tipo válido') 
+];
+
 validations.getBySomeId = [
     param('id')
     .isMongoId().withMessage('Debe brindar un dia válido') 
@@ -40,9 +45,7 @@ validations.create = [
 
     body("anidados")
     .optional()
-    .custom(value => {
-        return isArrayFormat(value);
-    }).withMessage("El elemento debe tener un arreglo válido de elementos anidados"),
+    .isArray().withMessage("El elemento debe tener un arreglo válido de elementos anidados"),
 
     body("descripcion")
     .notEmpty().withMessage("El elemento debe tener una descripción")

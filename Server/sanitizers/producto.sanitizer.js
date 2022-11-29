@@ -5,7 +5,6 @@ const {uploadPhoto, removePhoto} = require('../utils/utils');
 const sanitizer = {};
 
 sanitizer.create = async(req, res, next) => {
-    
     if (!req.file) {
         return res.status(400).json({error: "El producto debe tener una imagen"});
     }
@@ -33,9 +32,6 @@ sanitizer.create = async(req, res, next) => {
     // categorias = categorias.map(el => {
     //     return parseInt(el);
     // });
-
-    if (anidados)
-        anidados = JSON.parse(anidados);
     res.producto = 
     {
         nombre,

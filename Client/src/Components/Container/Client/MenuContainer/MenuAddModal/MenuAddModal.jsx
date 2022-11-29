@@ -35,7 +35,7 @@ const MenuAddModal = ({handleSubmit,closeHandler}) => {
     return (
         <div className="absolute top-0 right-0 h-full w-full flex justify-center items-center">
             <div className="bg-main-bg z-50 shadow-shadow relative flex h-1/2 w-100 flex-col ">
-                <span onClick={closeHandler} className="text-center rounded-full w-8     h-8 text-2xl absolute top-0 right-0 bg-black">&times;</span>
+                <span onClick={closeHandler} className="text-center rounded-full w-8 h-8 text-2xl absolute top-0 right-0 bg-black">&times;</span>
                 <h2>Agregar producto</h2>
                 <hr></hr>
                 <h3>Selecciona el elemento</h3>

@@ -40,10 +40,10 @@ const UserModel = new Schema({
         type: String,
         default: null,
     },
-    rol: {
-        type: String,
+    roles: {
+        type: [String],
         required: true,
-        default: "ROL_USER",
+        default: "USER",
     },
     institucion: {
         type: String,

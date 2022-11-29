@@ -59,7 +59,11 @@ const MenuContainer = () => {
     return(
         <>
             <MenuHeader dias={dias} getProductosHandler={getProductosHandler}></MenuHeader>
-            <Menu categorias={categorias}></Menu>
+            {
+                categorias.length > 0
+                ? <Menu categorias={categorias}></Menu>
+                : <h3 className="text-lg py-5">No hay productos para mostrar</h3>
+            }
             {
                 modal && <MenuAddModal handleSubmit={addProductSubmitHandler} closeHandler={closeHandler}/>
             }

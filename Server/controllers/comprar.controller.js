@@ -6,23 +6,26 @@ const User = require('../models/User.model');
 const { message } = require('../utils/utils');
 
 comprarController.comprar = async (req, res) => {
-    let
-    {
-        email,
+    let {
         productos
     } = req.body;
-
-    let usuario = await User.findOne({email});
-    const _productos = await Product.find( { _id : { $in : productos } } );
-    const total = _productos.reduce((acc, producto) => {
-        return acc+producto.precio;
-    }, 0.00);
-    if (total > usuario.wallet.ucoins) {
-        return res.status(400).json(message(false, 'No cuenta con suficientes fondos para realizar la compra'));
-    }
-    usuario.wallet.ucoins -= total;
-    let compra = new Compra({email, productos, total});
+    let { email } = res.user;
+    
     try {
+        let usuario = await User.findOne({email});
+        let total = await productos.reduce(async (acc, producto)=> {
+            const _producto = await Product.findById(producto.id);
+            return acc + _producto.precio * producto.cantidad;
+        }, 0);
+        if (total > usuario.wallet.ucoins) {
+            return res.status(400).json(message(false, 'No cuenta con suficientes fondos para realizar la compra'));
+        }
+        usuario.wallet.ucoins -= total;
+        let compra = new Compra({
+            email,
+            productos,
+            total
+        });
         await usuario.save();
         await compra.save();
         return res.status(200).json(message(true, "Se ha realizado la compra con éxito"));

@@ -1,10 +1,11 @@
 import { React, useEffect, useState } from "react";
-
+import { ToastContainer, toast } from 'react-toastify';
 import "./CategoriesAdd.css"
 import axios from "axios";
 import Button from "../../../Button/Button";
-
+import { useUserContext } from "../../../../contexts/UserContext";
 const CategoriesAdd = () => {
+    const {token} = useUserContext();
     const [form, setForm] = useState({});
     const [categorias, setCategoria] = useState([]);
     const getAllCategories = async () => {
@@ -25,53 +26,75 @@ const CategoriesAdd = () => {
 
     const handleSubmit = async () => {
         try {
-            let {data} = await axios.post('/categoria/', {nombre:form.nombre});
+            let {data} = await axios.post('/categoria/', {nombre:form.nombre}, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            });
             setCategoria([...categorias, data.categoria]);
+            toast.success(data.response.message);
         } catch(e) {
             console.log(e);
         }
     }
+    const handleDelete = async(id) => {
+        try {
+            let {data} = await axios.delete('/categoria/', {
+                headers:{
+                    authorization: `Bearer ${token}`
+                },
+                data: {id}
+            })
+            toast.success(data.message);
+            getAllCategories();
+        } catch(e) {
+            console.log(e);
+            toast.error(e.response.data.message);
+        }
+    }
 
     return(
-            <form action="" className="w-full flex flex-col justify-center items-center gap-10 text-xl">
+        <div className="w-full flex justify-center">
+            <form className="w-full lg:w-3/4 flex flex-col justify-center items-center gap-4 text-xl">
 
                 <input type="search" placeholder="Buscar" 
-                        className="w-10/12 max-w-screen-xl inp rounded-xl p-2" 
-                        onChange={(e)=>{
+                        className="w-full bg-second-bg rounded-md p-2 outline-none"                        onChange={(e)=>{
                             handleForm('search', e.target.value); 
                             }}
                         onKeyUp={
                             handleSubmit
                 }/>
                 
-                <div className="w-10/12 flex gap-10">
+                <div className="w-full flex flex-row justify-between gap-4">
                     <input id="nombre" type="text" placeholder="Nombre" 
-                            className=" w-full inp rounded-xl p-2" 
+                            className="w-full bg-second-bg rounded-md p-2 outline-none" 
                             onChange={(e)=>{
                                 handleForm('nombre', e.target.value); 
                             }}
                     />
                     <div className="flex gap-5">
                         <Button handler={handleSubmit}>Añadir</Button>
-                        <Button >Editar</Button>
-                        <Button _color="red">Eliminar</Button>
                     </div>
                 </div>
-                <div className="w-6/12 flex flex-col items-center">
+                <div className="w-full flex flex-col items-center py-5">
                     {
                         categorias.map(categoria => {
-                            return <p key={categoria._id}>{categoria.nombre}</p>
+                            return (
+                                <div className="w-full py-2 flex justify-between" key={categoria._id}>
+                                    <p className="w-1/2 lg:w-3/4">{categoria.nombre}</p>
+                                    <div className="w-1/2 lg:w-1/4 flex justify-end gap-2">
+                                        <button className="bg-button-bg flex-1 rounded-sm">Editar</button>
+                                        <button onClick={(e)=> {e.preventDefault(); handleDelete(categoria._id)}} className="bg-button-bg flex-1 rounded-sm">Eliminar</button>
+                                    </div>
+                                </div>
+                            )
                         })
                     }
-                    {/* <p className="text-2xl">Lista de categorias</p>
-                    <p onClick={(e)=>document.querySelector("#actual_C").value = categoria_act}> {categoria_act} </p>
-                    <p onClick={(e)=>document.querySelector("#actual_C").value = categoria_act}> {categoria_act} </p>
-                    <p onClick={(e)=>document.querySelector("#actual_C").value = categoria_act}> {categoria_act} </p>
-                    <p onClick={(e)=>document.querySelector("#actual_C").value = categoria_act}> {categoria_act} </p> */}
-
                 </div>
 
             </form>
+            <ToastContainer />
+        </div>
     );
 };
 

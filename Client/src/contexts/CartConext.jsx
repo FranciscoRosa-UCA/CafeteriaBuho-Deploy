@@ -6,15 +6,21 @@ const CartContext = React.createContext();
 export const CartProvider = (props) => {
     const [productosCarrito, setProductosCarrito] = useState([]);
     const [subtotal, setSubtotal] = useState(0);
-    const {user} = useUserContext();
-
+    const {user, token} = useUserContext();
     const comprar = async () => {
-        let email = user.email;
-        let productos = productosCarrito.map(producto => producto._id);
+        let productos = productosCarrito.map(producto => {
+            return {
+                id: producto._id,
+                cantidad: producto.cantidad
+            }
+        });
         
         try {
-            console.log({email, productos});
-            await axios.post('/comprar', {email, productos});
+            await axios.post('/comprar', {productos}, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            });
         } catch(e) {
             console.log(e);
             console.log('error');

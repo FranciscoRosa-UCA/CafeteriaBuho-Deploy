@@ -14,6 +14,24 @@ productoController.getAll = async (req, res) => {
         return res.status(500).json(message(false, 'Error interno'));
     }
 }
+productoController.getAllSimpleProduct = async (req, res) => {
+    try {
+        let productos = await Producto.find({anidados:[]}, {nombre:1, _id:1});
+        return res.status(200).json(productos);
+    } catch(e) {
+        return res.status(500).json(message(false, 'Error interno'));
+    }
+}
+
+productoController.getByNombreTipo = async (req, res) => {
+    try {
+        let tipo = await TipoModel.findOne({nombre: req.params.nombre});
+        let productos = await Producto.find({tipo: tipo._id}, {nombre:1, _id:1});
+        return res.status(200).json(productos);
+    } catch(e) {
+        return res.status(500).json(message(false, 'Error interno'));
+    }
+}
 
 productoController.getByDay = async (req, res) => {
     let { id } = req.params;

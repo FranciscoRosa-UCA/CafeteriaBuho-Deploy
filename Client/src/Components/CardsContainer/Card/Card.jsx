@@ -12,7 +12,7 @@ const Card = ({_id, _image, _name, _price}) => {
             <h5>{_name || "Platillo"}</h5>
             <div className="flex justify-between items-center">
                 <p>$ {_price || "0.00"}</p>
-                <Icon _type="addShopping" handler={(e)=>addProducto(_id)}></Icon>
+                <span className="cursor-pointer" ><Icon _type="addShopping" handler={(e)=>addProducto(_id)}></Icon></span>
             </div>
         </div>
     );

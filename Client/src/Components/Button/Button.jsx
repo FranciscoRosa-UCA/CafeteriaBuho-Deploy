@@ -6,7 +6,7 @@ const Button = ({children, handler, _color="yellow"}) => {
     const theme = createTheme({
       palette: {
         yellow: {
-          main: '#FFB703',
+          main: '#FCA311',
         },
         dark: {
           main: 'rgba(31, 63, 132, 0.25)',
