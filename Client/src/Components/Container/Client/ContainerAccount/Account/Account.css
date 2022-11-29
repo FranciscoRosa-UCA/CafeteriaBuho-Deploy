@@ -1,0 +1,9 @@
+.inp{
+    background: rgba(31, 63, 132, 0.25);
+}
+
+.pic{
+    background-color: white;
+    border-radius: 50%;
+    overflow: hidden;
+}

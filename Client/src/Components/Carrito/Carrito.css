@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@600&family=Poppins:wght@600&display=swap');
+
+
+.general-container{
+    width: 380px;
+    height: 840px;
+    border-radius: 20px;
+}
+
+.components-container{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+}
+
+.item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Gothic A1', sans-serif;
+    font-size: 16px;    
+}
+
+.confirmacion{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  
+    font-family: 'Gothic A1', sans-serif;
+    font-size: 16px; 
+}
+
+.subtotal{
+    display: flex;
+    justify-content: flex-end;
+}
+
+
