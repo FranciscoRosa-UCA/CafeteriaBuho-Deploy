@@ -50,7 +50,7 @@ const Carrito = ({handler, hacerPedidoHandler}) => {
                         ? subtotal
                         : '-'
                     }</p>
-                    <Button handler={hacerPedidoHandler}>Hacer pedido</Button>
+                    <button className={(productosCarrito.length>0 ? "" : "cursor-not-allowed") + " text-lg bg-button-bg py-2 rounded-md"} onClick={hacerPedidoHandler}>Hacer pedido</button>
                 </div>
                 <ToastContainer
                     position="bottom-right"

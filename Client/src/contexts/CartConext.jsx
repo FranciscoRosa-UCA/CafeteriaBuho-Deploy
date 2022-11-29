@@ -6,7 +6,7 @@ const CartContext = React.createContext();
 export const CartProvider = (props) => {
     const [productosCarrito, setProductosCarrito] = useState([]);
     const [subtotal, setSubtotal] = useState(0);
-    const {user, token} = useUserContext();
+    const {token} = useUserContext();
     const comprar = async () => {
         let productos = productosCarrito.map(producto => {
             return {

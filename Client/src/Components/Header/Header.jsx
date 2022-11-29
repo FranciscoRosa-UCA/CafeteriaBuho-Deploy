@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Wallet from "../Wallet/Wallet";
 import Payment from "../Payment/Payment";
 import Carrito from '../Carrito/Carrito';
 import Icon from "../Icon/Icon";
@@ -23,16 +24,20 @@ const MainHeader = () => {
     }
     const walletHandler = () => {
         if (wallet) {
+            hideAll();
             showWallet(false);
             return;
         }
+        hideAll();
         showWallet(true);
     }
     const cartHandler = () => {
         if (cart) {
+            hideAll();
             showCart(false);
             return;
         }
+        hideAll();
         showCart(true);
     }
     const hacerPedidoHandler = ()=> {
@@ -90,7 +95,7 @@ const MainHeader = () => {
                 </div>
             </header>
             {
-                wallet && <Payment handler={walletHandler}/>
+                wallet && <Wallet handler={walletHandler} recargarQR={recargarBilleteraHandler}/>
             }
             {
                 cart && <Carrito hacerPedidoHandler={hacerPedidoHandler} handler={cartHandler} />
@@ -99,7 +104,7 @@ const MainHeader = () => {
                 pedido && <Payment handler={cancelarPedidoHandler} recargarHandler={recargarBilleteraHandler} compraHandler={comprarHandler}/>
             }
             {
-                recargar && <QrPayment regresarHandler={hacerPedidoHandler} />
+                recargar && <QrPayment regresarHandler={ walletHandler} />
             }
         </>
     );
