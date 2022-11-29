@@ -13,7 +13,7 @@ const cloudinary = require('./config/cloudinary');
 
 mongodb.connect();
 const corsOptions = {
-    origin: '*',
+    origin: ['https://cafeteriabuho.netlify.app', 'http://localhost:5173'],
 }
 
 app.use(logger('dev'));

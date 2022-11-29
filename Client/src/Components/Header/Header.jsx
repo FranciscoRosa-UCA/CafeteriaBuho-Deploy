@@ -86,7 +86,7 @@ const MainHeader = () => {
                     </nav>
                 </div>
                 <div className="flex flex-wrap justify-center items-center gap-10">
-                    <figure className="cursor-pointer">
+                    <figure className={user ? "" : "hidden" +" cursor-pointer"}>
                         <Icon handler={walletHandler} _type="wallet" ></Icon>
                     </figure>
                     <figure className="cursor-pointer">
